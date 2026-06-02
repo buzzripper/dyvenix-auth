@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="e9fabaa9-3f8d-4e78-a0a7-f03bdd0bda15" name="AuthTest" entitiesOutputFolder="src\Auth\Auth.Data\Entities" entitiesNamespace="Dyvenix.Auth.Data.Entities" dbContextOutputFolder="src\Auth\Auth.Data\Context" dbContextNamespace="Dyvenix.Auth.Data.Context" dbContextUsings="Microsoft.AspNetCore.Identity.EntityFrameworkCore" enumsOutputFolder="src\Auth\Auth.Shared\DTOs" enumsNamespace="Dyvenix.Auth.Shared.DTOs" inclHeader="false" permissions="Permission1|&#xA;Permission2|&#xA;Permission3|" dbContextName="AuthDbContext" commonNamespace="Dyvenix.Common" intTestsRootFolder="tests\Tests.Integration" intTestsNamespace="Dyvenix.Auth.Tests.Integration" unitTestsRootFolder="tests\Tests.Unit" unitTestsNamespace="Dyvenix.Tests.Unit" intTestsEnabled="false" unitTestsEnabled="false" dbContextBaseClass="IdentityDbContext&lt;ApplicationUser&gt;" xmlns="http://schemas.microsoft.com/dsltools/GenIt">
+  <types>
+    <modelRootHasTypes Id="599b7180-b696-4344-bde3-014ff20032e4">
+      <entityModel Id="fbcf2b7a-05a3-402f-abf1-93ef79b970cd" name="AspNetRoleClaims" auditable="false" generateCode="false" inclRowVersion="false" enabled="true" tableName="AspNetRoleClaims">
+        <properties>
+          <propertyModel Id="a338d4f8-60f2-4dcd-bb91-6d11433b8013" name="Id" dataType="Int32" isPrimaryKey="true" isIdentity="true" isForeignKey="false" />
+          <propertyModel Id="331e3377-dc6b-493d-8297-f10c36c70987" name="RoleId" length="450" isForeignKey="true" displayOrder="1" />
+          <propertyModel Id="0bbf743f-5182-48ba-9f9e-62a32ea3cace" name="ClaimType" length="50" isNullable="true" isForeignKey="false" displayOrder="2" />
+          <propertyModel Id="6f987c42-c260-43f1-ac27-08997955717c" name="ClaimValue" length="50" isNullable="true" isForeignKey="false" displayOrder="3" />
+        </properties>
+      </entityModel>
+    </modelRootHasTypes>
+    <modelRootHasTypes Id="65aa5ac1-393f-4610-a4c1-380b0a9ea1b4">
+      <entityModel Id="ca2ae5a6-4ab2-41d6-930b-9bfc7e8ec184" name="AspNetRoles" auditable="false" generateCode="false" inclRowVersion="false" enabled="true" tableName="AspNetRoles">
+        <properties>
+          <propertyModel Id="909cf89c-a58c-4fc8-beb7-e2ab9e765cc7" name="Id" length="450" isPrimaryKey="true" isForeignKey="false" />
+          <propertyModel Id="fea7c871-d1aa-4b84-b0bb-18f96b35398f" name="Name" length="256" isNullable="true" isForeignKey="false" displayOrder="1" />
+          <propertyModel Id="27302ce2-869f-49e3-b14c-1afeb1e06d4a" name="NormalizedName" length="256" isNullable="true" isForeignKey="false" displayOrder="2" />
+          <propertyModel Id="2ee93e33-4e84-420b-bcee-243e048f9703" name="ConcurrencyStamp" length="50" isNullable="true" isForeignKey="false" displayOrder="3" />
+        </properties>
+      </entityModel>
+    </modelRootHasTypes>
+    <modelRootHasTypes Id="a82b1848-7a55-4d69-b92c-4b67e712d67f">
+      <entityModel Id="ef63660e-c592-466e-a0d4-28467dee8533" name="AspNetUserClaims" auditable="false" generateCode="false" inclRowVersion="false" enabled="true" tableName="AspNetUserClaims">
+        <properties>
+          <propertyModel Id="828229f3-8bd2-4fb7-840f-30ee39dabf0f" name="Id" dataType="Int32" isPrimaryKey="true" isIdentity="true" isForeignKey="false" />
+          <propertyModel Id="84e234ac-1b2d-4725-8282-1a48c2f126f5" name="UserId" length="450" isForeignKey="true" displayOrder="1" />
+          <propertyModel Id="2f588167-019b-4841-9016-2db208ef91d6" name="ClaimType" length="50" isNullable="true" isForeignKey="false" displayOrder="2" />
+          <propertyModel Id="00655ce4-e19c-4e95-a197-dbb38bc300af" name="ClaimValue" length="50" isNullable="true" isForeignKey="false" displayOrder="3" />
+        </properties>
+      </entityModel>
+    </modelRootHasTypes>
+    <modelRootHasTypes Id="d239865d-eb89-4200-a1b1-6626941e0142">
+      <entityModel Id="11491b8c-43c2-402d-8b41-40f68223f0e3" name="AspNetUserLogins" auditable="false" generateCode="false" inclRowVersion="false" enabled="true" tableName="AspNetUserLogins">
+        <properties>
+          <propertyModel Id="3c1dff05-4a05-4725-8d6f-ef6d5c14b05b" name="LoginProvider" length="450" isPrimaryKey="true" isForeignKey="false" />
+          <propertyModel Id="62a7db97-ded7-42ab-8ef6-5c952be554cb" name="ProviderKey" length="450" isPrimaryKey="true" isForeignKey="false" displayOrder="1" />
+          <propertyModel Id="c6d3608c-12b8-4e8e-8548-fe5b9e9c3726" name="ProviderDisplayName" length="50" isNullable="true" isForeignKey="false" displayOrder="2" />
+          <propertyModel Id="d3849df4-87db-4137-9c90-9ef09b8ae1d1" name="UserId" length="450" isForeignKey="true" displayOrder="3" />
+        </properties>
+      </entityModel>
+    </modelRootHasTypes>
+    <modelRootHasTypes Id="737de48c-076a-4ec5-aaae-61411d6191e1">
+      <entityModel Id="79ef60c3-86b8-48dd-8203-88afdf5a634e" name="AspNetUserRoles" auditable="false" generateCode="false" inclRowVersion="false" enabled="true" tableName="AspNetUserRoles">
+        <properties>
+          <propertyModel Id="c8bac1e2-6d6e-4fe8-8783-698c10d16d5e" name="UserId" length="450" isPrimaryKey="true" isForeignKey="true" />
+          <propertyModel Id="012ef1ea-c3e4-4b9d-bcbf-2e757ba04b47" name="RoleId" length="450" isPrimaryKey="true" isForeignKey="true" displayOrder="1" />
+        </properties>
+      </entityModel>
+    </modelRootHasTypes>
+    <modelRootHasTypes Id="8f5a1ec8-afe3-4ef3-8002-25d07d7365f3">
+      <entityModel Id="589d88ce-8801-413f-b11f-f48a38ff76ae" name="AspNetUsers" auditable="false" generateCode="false" inclRowVersion="false" enabled="true" tableName="AspNetUsers">
+        <properties>
+          <propertyModel Id="3a2fe30c-9746-4a29-8361-e6805cf44eb0" name="Id" length="450" isPrimaryKey="true" isForeignKey="false" />
+          <propertyModel Id="cfac90a7-6bab-4715-9130-95d534ede960" name="UserName" length="256" isNullable="true" isForeignKey="false" displayOrder="1" />
+          <propertyModel Id="7354158f-7316-42d0-a36c-36b283c86167" name="NormalizedUserName" length="256" isNullable="true" isForeignKey="false" displayOrder="2" />
+          <propertyModel Id="f0c0ae66-e367-4306-99e4-7e488c6eb1fe" name="Email" length="256" isNullable="true" isForeignKey="false" displayOrder="3" />
+          <propertyModel Id="b0b86092-d6f0-44c9-beec-b72f25f07075" name="NormalizedEmail" length="256" isNullable="true" isForeignKey="false" displayOrder="4" />
+          <propertyModel Id="28892268-ea49-4bbc-9f2d-9e2790ed5adb" name="EmailConfirmed" dataType="Boolean" isForeignKey="false" displayOrder="5" />
+          <propertyModel Id="c7cf52f2-8e75-4f72-b1e1-c74b3bb476df" name="PasswordHash" length="50" isNullable="true" isForeignKey="false" displayOrder="6" />
+          <propertyModel Id="a2e25672-b681-445d-a45c-1126cb90abbc" name="SecurityStamp" length="50" isNullable="true" isForeignKey="false" displayOrder="7" />
+          <propertyModel Id="bad94f65-12c4-4372-bb17-46d9f9f56969" name="ConcurrencyStamp" length="50" isNullable="true" isForeignKey="false" displayOrder="8" />
+          <propertyModel Id="375de35f-3217-4f42-aa14-475b1abbfee9" name="PhoneNumber" length="50" isNullable="true" isForeignKey="false" displayOrder="9" />
+          <propertyModel Id="1424cf6b-fe5a-4c01-8949-b64debfca680" name="PhoneNumberConfirmed" dataType="Boolean" isForeignKey="false" displayOrder="10" />
+          <propertyModel Id="c76e95d4-c9be-4988-9038-a7bc700deb33" name="TwoFactorEnabled" dataType="Boolean" isForeignKey="false" displayOrder="11" />
+          <propertyModel Id="3bdb4ca6-fb24-4fc1-bc21-f504702e2a05" name="LockoutEnd" dataType="DateTimeOffset" isNullable="true" isForeignKey="false" displayOrder="12" />
+          <propertyModel Id="c3449a1e-a12e-4b61-a1f5-e332ecc7a56c" name="LockoutEnabled" dataType="Boolean" isForeignKey="false" displayOrder="13" />
+          <propertyModel Id="7c8a92f7-f1c1-464e-a856-38d42bd6dc68" name="AccessFailedCount" dataType="Int32" isForeignKey="false" displayOrder="14" />
+        </properties>
+      </entityModel>
+    </modelRootHasTypes>
+    <modelRootHasTypes Id="29901a78-a03f-4e03-8088-50d9580923a2">
+      <entityModel Id="45f14bc8-68e5-4b0d-b808-e103e3739a86" name="AspNetUserTokens" auditable="false" generateCode="false" inclRowVersion="false" enabled="true" tableName="AspNetUserTokens">
+        <properties>
+          <propertyModel Id="2f753248-7163-41b9-aba2-186d016fbc13" name="UserId" length="450" isPrimaryKey="true" isForeignKey="true" />
+          <propertyModel Id="0ded3df6-2567-4a08-b9d5-7076371326e1" name="LoginProvider" length="450" isPrimaryKey="true" isForeignKey="false" displayOrder="1" />
+          <propertyModel Id="7545db67-6af8-4199-8e52-1e38f5d8fac5" name="Name" length="450" isPrimaryKey="true" isForeignKey="false" displayOrder="2" />
+          <propertyModel Id="2a99a8d8-2a8c-495f-967f-763a596023b2" name="Value" length="50" isNullable="true" isForeignKey="false" displayOrder="3" />
+        </properties>
+      </entityModel>
+    </modelRootHasTypes>
+    <modelRootHasTypes Id="550047ce-53f2-451f-97ca-2a150caf7952">
+      <entityModel Id="e1e94da4-a26f-4c14-b903-40afc3f788fb" name="FidoStoredCredential" auditable="false" generateCode="false" inclRowVersion="false" enabled="true" tableName="FidoStoredCredential">
+        <properties>
+          <propertyModel Id="76fbb76c-224b-482f-a0b1-a39f5142dad9" name="Id" dataType="Int32" isPrimaryKey="true" isIdentity="true" isForeignKey="false" />
+          <propertyModel Id="f9cec2a8-bf21-4197-9597-9b2b052e070c" name="UserName" length="50" isNullable="true" isForeignKey="false" displayOrder="1" />
+          <propertyModel Id="38416985-f8df-431b-8b20-6c248d93e26d" name="UserId" dataType="ByteArray" isNullable="true" isForeignKey="false" displayOrder="2" />
+          <propertyModel Id="ccfcf37e-b5fd-42a4-9bfb-e7e0f1dd1a4b" name="PublicKey" dataType="ByteArray" isNullable="true" isForeignKey="false" displayOrder="3" />
+          <propertyModel Id="f2513796-0cf2-43e0-be59-d96a746b2ccf" name="UserHandle" dataType="ByteArray" isNullable="true" isForeignKey="false" displayOrder="4" />
+          <propertyModel Id="9b9ad8a3-1b52-4993-b39d-b7b68b053dcf" name="SignatureCounter" dataType="Int64" isForeignKey="false" displayOrder="5" />
+          <propertyModel Id="42768999-2162-4850-95b7-9dea1a2c9d1b" name="CredType" length="50" isNullable="true" isForeignKey="false" displayOrder="6" />
+          <propertyModel Id="c4e98563-0094-456f-862a-4751ff26f09b" name="RegDate" dataType="DateTime" isForeignKey="false" displayOrder="7" />
+          <propertyModel Id="aa4229dd-b23a-482e-ba46-ef3d7a752e18" name="AaGuid" dataType="Guid" isForeignKey="false" displayOrder="8" />
+          <propertyModel Id="6276bfcc-1c61-4eed-a102-1e3b656b85e8" name="DescriptorJson" length="50" isNullable="true" isForeignKey="false" displayOrder="9" />
+        </properties>
+      </entityModel>
+    </modelRootHasTypes>
+    <modelRootHasTypes Id="df957e3a-c54c-4688-bd96-05243939d8c5">
+      <entityModel Id="99cf6316-67e8-4319-b6c4-8136d8f73f47" name="OpenIddictApplications" auditable="false" generateCode="false" inclRowVersion="false" enabled="true" tableName="OpenIddictApplications">
+        <properties>
+          <propertyModel Id="ca756d42-b8f1-4253-999a-e023ff3ac89e" name="Id" length="450" isPrimaryKey="true" isForeignKey="false" />
+          <propertyModel Id="1dea9fbf-f15f-47f1-9d90-94fa75b7fb87" name="ApplicationType" length="50" isNullable="true" isForeignKey="false" displayOrder="1" />
+          <propertyModel Id="8f43f945-b092-4bc7-9d73-20c92e32f3be" name="ClientId" length="100" isNullable="true" isForeignKey="false" displayOrder="2" />
+          <propertyModel Id="23396728-05a7-4bda-b797-b6441d600524" name="ClientSecret" length="50" isNullable="true" isForeignKey="false" displayOrder="3" />
+          <propertyModel Id="c663f73a-f790-45d8-8f67-c3c21eee05a0" name="ClientType" length="50" isNullable="true" isForeignKey="false" displayOrder="4" />
+          <propertyModel Id="c882c848-c344-401d-9d8d-7da09e26e8ad" name="ConcurrencyToken" length="50" isNullable="true" isForeignKey="false" displayOrder="5" />
+          <propertyModel Id="3d59f43f-faa8-4d50-979e-3e4c1241a23c" name="ConsentType" length="50" isNullable="true" isForeignKey="false" displayOrder="6" />
+          <propertyModel Id="2455e3cc-931a-4808-afd6-18ba1cd7f7d0" name="DisplayName" length="50" isNullable="true" isForeignKey="false" displayOrder="7" />
+          <propertyModel Id="55266109-6994-43bf-8c3a-46e66ef8074b" name="DisplayNames" length="50" isNullable="true" isForeignKey="false" displayOrder="8" />
+          <propertyModel Id="28183165-f297-4c0a-b88f-cb14e758987e" name="JsonWebKeySet" length="50" isNullable="true" isForeignKey="false" displayOrder="9" />
+          <propertyModel Id="9fd93e05-bc26-4557-8fac-4d008f76ae82" name="Permissions" length="50" isNullable="true" isForeignKey="false" displayOrder="10" />
+          <propertyModel Id="74c1e7a5-5933-48f5-90ef-7eed014120b4" name="PostLogoutRedirectUris" length="50" isNullable="true" isForeignKey="false" displayOrder="11" />
+          <propertyModel Id="6dd242a4-ed26-49fe-ba72-7f15cdd47ce0" name="Properties" length="50" isNullable="true" isForeignKey="false" displayOrder="12" />
+          <propertyModel Id="cd243f0b-0131-44f4-bd17-ef44f7e427df" name="RedirectUris" length="50" isNullable="true" isForeignKey="false" displayOrder="13" />
+          <propertyModel Id="1c194d17-2c8a-492c-b32e-58a4abc79dbc" name="Requirements" length="50" isNullable="true" isForeignKey="false" displayOrder="14" />
+          <propertyModel Id="dbc07718-613e-495d-99b5-947f3faad40b" name="Settings" length="50" isNullable="true" isForeignKey="false" displayOrder="15" />
+        </properties>
+      </entityModel>
+    </modelRootHasTypes>
+    <modelRootHasTypes Id="901992f3-b436-479a-9600-394c4fd01dff">
+      <entityModel Id="bcc6a7c1-ea4a-481a-9086-d42302d6257b" name="OpenIddictAuthorizations" auditable="false" generateCode="false" inclRowVersion="false" enabled="true" tableName="OpenIddictAuthorizations">
+        <properties>
+          <propertyModel Id="a33bed89-69c2-4617-8511-094f8807a95e" name="Id" length="450" isPrimaryKey="true" isForeignKey="false" />
+          <propertyModel Id="08de5aa9-faf1-473a-8fad-4c3cbcefc5d9" name="ApplicationId" length="450" isNullable="true" isForeignKey="true" displayOrder="1" />
+          <propertyModel Id="8a4a0995-06ec-45bf-b243-12162b2068b1" name="ConcurrencyToken" length="50" isNullable="true" isForeignKey="false" displayOrder="2" />
+          <propertyModel Id="95d264df-5df0-4c8c-b35a-17ebdae31a57" name="CreationDate" dataType="DateTime" isNullable="true" isForeignKey="false" displayOrder="3" />
+          <propertyModel Id="71869bba-7937-45eb-ac37-931fa5d6b077" name="Properties" length="50" isNullable="true" isForeignKey="false" displayOrder="4" />
+          <propertyModel Id="7afc0861-91ea-4aff-bcb9-ed4a4336ffd2" name="Scopes" length="50" isNullable="true" isForeignKey="false" displayOrder="5" />
+          <propertyModel Id="820f612d-d671-419e-806c-5bd353ce9589" name="Status" length="50" isNullable="true" isForeignKey="false" displayOrder="6" />
+          <propertyModel Id="658339b3-730a-4fbb-822a-2a3c94934535" name="Subject" length="400" isNullable="true" isForeignKey="false" displayOrder="7" />
+          <propertyModel Id="21ca7949-0a02-4c1e-9df5-07ac73fb0b39" name="Type" length="50" isNullable="true" isForeignKey="false" displayOrder="8" />
+        </properties>
+      </entityModel>
+    </modelRootHasTypes>
+    <modelRootHasTypes Id="e96c302b-b433-471a-9663-1e14b1a1c4ce">
+      <entityModel Id="51fd39fe-b43f-4f49-ae18-357272fc8de7" name="OpenIddictScopes" auditable="false" generateCode="false" inclRowVersion="false" enabled="true" tableName="OpenIddictScopes">
+        <properties>
+          <propertyModel Id="7fd42c1f-9c58-415f-9fe8-1a0adb673723" name="Id" length="450" isPrimaryKey="true" isForeignKey="false" />
+          <propertyModel Id="e8fb5646-44c4-4ff2-988e-d47d2577ff2f" name="ConcurrencyToken" length="50" isNullable="true" isForeignKey="false" displayOrder="1" />
+          <propertyModel Id="c0329f11-6309-4124-8910-ee6eb3d695c6" name="Description" length="50" isNullable="true" isForeignKey="false" displayOrder="2" />
+          <propertyModel Id="7f884533-1e11-4b0a-92cf-742c23b94c99" name="Descriptions" length="50" isNullable="true" isForeignKey="false" displayOrder="3" />
+          <propertyModel Id="af99c79a-b8f9-4936-a44b-6bc2634adb8c" name="DisplayName" length="50" isNullable="true" isForeignKey="false" displayOrder="4" />
+          <propertyModel Id="7424c497-80cf-4531-85c2-c4ff7735e57d" name="DisplayNames" length="50" isNullable="true" isForeignKey="false" displayOrder="5" />
+          <propertyModel Id="9ce8f65c-92a5-4846-8a89-dd4508ffe1f5" name="Name" length="200" isNullable="true" isForeignKey="false" displayOrder="6" />
+          <propertyModel Id="8b6216c3-b1a3-402f-a691-42c4f867bfe9" name="Properties" length="50" isNullable="true" isForeignKey="false" displayOrder="7" />
+          <propertyModel Id="b4ef4ab8-ec6b-4a56-8de9-60df20c81b6f" name="Resources" length="50" isNullable="true" isForeignKey="false" displayOrder="8" />
+        </properties>
+      </entityModel>
+    </modelRootHasTypes>
+    <modelRootHasTypes Id="d401f4a9-d3ce-405b-bfa2-2f21aaad1b57">
+      <entityModel Id="377ab3f3-8abc-481a-9fb6-a54540b773b5" name="OpenIddictTokens" auditable="false" generateCode="false" inclRowVersion="false" enabled="true" tableName="OpenIddictTokens">
+        <properties>
+          <propertyModel Id="4757d4ef-35f8-4f79-b534-7c30c2f81bd6" name="Id" length="450" isPrimaryKey="true" isForeignKey="false" />
+          <propertyModel Id="a37412c6-5703-429a-9e50-877f08e4b8a3" name="ApplicationId" length="450" isNullable="true" isForeignKey="true" displayOrder="1" />
+          <propertyModel Id="c78633d8-b7fd-49c1-a3f4-3d930be262c6" name="AuthorizationId" length="450" isNullable="true" isForeignKey="true" displayOrder="2" />
+          <propertyModel Id="739106b1-48d7-4075-8cdb-26a87d34cc8f" name="ConcurrencyToken" length="50" isNullable="true" isForeignKey="false" displayOrder="3" />
+          <propertyModel Id="ffa1e0c6-ce5c-40fd-a843-456bcc1e1348" name="CreationDate" dataType="DateTime" isNullable="true" isForeignKey="false" displayOrder="4" />
+          <propertyModel Id="b5074341-cde1-4b2d-a0cc-fb3c64b66c46" name="ExpirationDate" dataType="DateTime" isNullable="true" isForeignKey="false" displayOrder="5" />
+          <propertyModel Id="6203566d-94d1-4b95-859d-7e6aae55cc27" name="Payload" length="50" isNullable="true" isForeignKey="false" displayOrder="6" />
+          <propertyModel Id="3948db6a-2bf4-4014-ad63-2ee28a64e319" name="Properties" length="50" isNullable="true" isForeignKey="false" displayOrder="7" />
+          <propertyModel Id="f3debb8a-2e74-4b82-ae23-2a2c40bab7c9" name="RedemptionDate" dataType="DateTime" isNullable="true" isForeignKey="false" displayOrder="8" />
+          <propertyModel Id="3aa705bc-347d-4a11-b202-500cc6800a31" name="ReferenceId" length="100" isNullable="true" isForeignKey="false" displayOrder="9" />
+          <propertyModel Id="65ed97b8-ecc8-4e11-afd5-69671f55e416" name="Status" length="50" isNullable="true" isForeignKey="false" displayOrder="10" />
+          <propertyModel Id="6be12536-3bc6-4c45-b23f-059dc1478a8c" name="Subject" length="400" isNullable="true" isForeignKey="false" displayOrder="11" />
+          <propertyModel Id="e7986b94-7877-4716-a37f-54e0e427a84a" name="Type" length="150" isNullable="true" isForeignKey="false" displayOrder="12" />
+        </properties>
+      </entityModel>
+    </modelRootHasTypes>
+    <modelRootHasTypes Id="61a8a617-8760-4e01-9255-41e39e338f1d">
+      <entityModel Id="5ce06fd4-0d08-4b9c-8541-9a26368086b1" name="Tenant" auditable="false" inclRowVersion="false" module="Auth" enabled="true" tableName="Tenant">
+        <properties>
+          <propertyModel Id="e3825969-1dea-4d87-8a1b-8cc7428ebc2b" name="Id" dataType="Guid" isPrimaryKey="true" isForeignKey="false" />
+          <propertyModel Id="87e86ada-f959-4177-8773-5bb310243768" name="Name" length="200" isForeignKey="false" displayOrder="1" />
+          <propertyModel Id="c4e4a408-3119-40cf-a376-5b4251ab4149" name="Slug" length="100" isForeignKey="false" displayOrder="2" />
+          <propertyModel Id="44ef2ca0-ff4e-4595-ab0b-5a5d4a79616d" name="AuthMode" dataType="AuthMode" isForeignKey="false" displayOrder="3" />
+          <propertyModel Id="205739b9-ddd8-47bc-b241-e1e133b134fc" name="ExternalAuthority" length="500" isNullable="true" isForeignKey="false" displayOrder="4" />
+          <propertyModel Id="f8b8084d-5861-4464-8d2a-d90d4955fa5d" name="ExternalClientId" length="200" isNullable="true" isForeignKey="false" displayOrder="5" />
+          <propertyModel Id="dbe808c6-7697-48a6-9656-c36130bbbd31" name="ExternalClientSecret" length="500" isNullable="true" isForeignKey="false" displayOrder="6" />
+          <propertyModel Id="e84f3982-df84-47f6-8ce7-73868dc4c569" name="ADDcHost" length="200" isNullable="true" isForeignKey="false" displayOrder="7" />
+          <propertyModel Id="4e998b5d-81da-499c-b6d2-94a140c933e8" name="ADDomain" length="200" isNullable="true" isForeignKey="false" displayOrder="8" />
+          <propertyModel Id="1a9daa1d-ecbd-4e31-a265-8ff1a8ad7a3b" name="ADLdapPort" dataType="Int32" isNullable="true" isForeignKey="false" displayOrder="9" />
+          <propertyModel Id="a6271464-7873-4b0e-bccf-f916b8dd7e5f" name="ADBaseDn" length="200" isNullable="true" isForeignKey="false" displayOrder="10" />
+          <propertyModel Id="c9da06a3-8cb8-4f7e-b84c-1636d8ea604d" name="IsActive" dataType="Boolean" isForeignKey="false" displayOrder="11" />
+          <propertyModel Id="416ddf34-a20e-4b8a-8673-2dd8b52b7122" name="CreatedAt" dataType="DateTime" isForeignKey="false" displayOrder="12" />
+        </properties>
+        <serviceModels>
+          <entityModelHasServiceModels Id="05143ce3-6690-4cd5-9d3f-be2921d2716b">
+            <serviceModel Id="e70d7b3d-66fd-48a0-a8f0-7100fd95a746" name="ServiceModel1" inclCreate="false" inclUpdate="false" inclDelete="false" version="v1" />
+          </entityModelHasServiceModels>
+        </serviceModels>
+      </entityModel>
+    </modelRootHasTypes>
+    <modelRootHasTypes Id="9907bdb7-bd83-4a9a-8a53-8317d558648e">
+      <moduleModel Id="b30393c7-35e1-4388-bd9e-234d54ac95eb" name="Auth" rootFolder="src\Auth" namespace="Dyvenix.Auth" dtoNamespace="Dyvenix.Auth.Shared.DTOs" requestNamespace="Dyvenix.Auth.Shared.Requests" dtoOuputFolder="src\Auth\Auth.Shared\DTOs" />
+    </modelRootHasTypes>
+    <modelRootHasTypes Id="b4d72a7b-fbd3-4025-b3d4-352ebea2501d">
+      <enumModel Id="632c7432-4bcd-4229-af4b-5e9770eddf65" name="AuthMode">
+        <members>
+          <enumMember Id="1ea8d724-9f25-4416-8120-bfb1decc43cf" name="Local" />
+          <enumMember Id="0f8cba13-aaeb-4145-8576-efd91df3a4d6" name="AD" />
+          <enumMember Id="136601ed-dfae-4725-ab7e-0f5e8b63ab92" name="ExternalOidc" />
+        </members>
+      </enumModel>
+    </modelRootHasTypes>
+  </types>
+</modelRoot>

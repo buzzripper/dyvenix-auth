@@ -1,0 +1,84 @@
+@page
+@model LoginModel
+@inject Dyvenix.Auth.Data.ITenantContext TenantContext
+
+@{
+	ViewData["Title"] = "Log in";
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"]</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body class="min-vh-100">
+
+	<div class="position-absolute top-0 start-0 m-3">
+		<img src="~/images/logixpro-logo.png" alt="PEAK Logo" style="width:40%; height:auto;" />
+	</div>
+
+	<div class="d-flex align-items-center justify-content-center min-vh-100">
+	<div class="col-md-4">
+		@* <h1 class="text-center mb-4">@ViewData["Title"]</h1> *@
+		<section>
+			<form id="account" method="post">
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+				@if (!string.IsNullOrEmpty(TenantContext.TenantSlug))
+				{
+					<div class="text-center mb-4">
+						<img 
+							 @* src="/api/auth/brand-img/@TenantContext.TenantSlug" *@
+							 src="/images/@(TenantContext.TenantSlug).png"
+							 alt="Brand Logo"
+							 width="300" XXXheight="100"
+							 style="object-fit:contain;"
+							 @* onerror="this.style.display='none'"  *@
+							 />
+					</div>
+				}
+				<div class="mb-3 text-center">
+					<div style="font-size:20px;color:blue;">Sign In</div>
+				</div>
+				<div class="mb-3">
+					<label asp-for="Input.Email" class="form-label"></label>
+					<input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" aria-describedby="emailHelp" />
+					<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+					<span asp-validation-for="Input.Email" class="text-danger"></span>
+				</div>
+				<div class="mb-3">
+					<label asp-for="Input.Password" class="form-label"></label>
+					<input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
+					<span asp-validation-for="Input.Password" class="text-danger"></span>
+				</div>
+				<div class="mb-3 form-check">
+					<input type="checkbox" class="form-check-input" asp-for="Input.RememberMe">
+					<label class="form-check-label" asp-for="Input.RememberMe">@Html.DisplayNameFor(m => m.Input.RememberMe)</label>
+				</div>
+
+				<div>
+					<button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+				</div>
+				<br />
+				<div class="text-center">
+					<a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+				</div>
+			</form>
+		</section>
+	</div>
+	</div>
+
+	<script
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>
+
+
+
+

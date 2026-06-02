@@ -1,0 +1,32 @@
+
+Entity Framework Commands
+---------------------------------
+
+Add-Migration <migration name> -Project Auth.Data -StartupProject Auth.Server
+// ------ Update Database ------
+
+
+// Local
+Update-Database -Project Auth.Data -StartupProject Auth.Server -Context AuthDbContext -Connection "Data Source=localhost;Initial Catalog=Auth;Integrated Security=True;Encrypt=False;"
+
+// Azure dev
+Update-Database -Project Auth.Data -StartupProject Auth.Server -Context AuthDbContext -Connection "Server=tcp:sql-pickpro2-eastus2.database.windows.net,1433;Initial Catalog=pickpro2-auth-db;Persist Security Info=False;User ID=sqladmin;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+
+
+Scaffold-DbContext "Password=dyv_pwd1;User ID=dyvenix_admin;Initial Catalog=dyvenix;Data Source=localhost;Encrypt=False;" Microsoft.EntityFrameworkCore.SqlServer -Project Common.Data -OutputDir Entities -ContextDir Contexts -Context Db -ContextNamespace  Common.Data -Force -NoOnConfiguring
+
+Add-Migration -Name Initial -Project app1.data
+
+// Local db
+Update-Database -Project Auth.Data -Connection "Server=.;Database=Auth;Trusted_Connection=True;TrustServerCertificate=True"
+
+// Local test db
+Update-Database -Project app1.data -Connection "Password=dyv_pwd1;User ID=dyvenix_admin;Initial Catalog=dyvenix_test;Data Source=localhost;Encrypt=False;"
+
+// Azure db
+Update-Database -Project app1.data -Connection "Password=dyv_pwd1;User ID=dyvenix_admin;Initial Catalog=dyvenix;Data Source=dyvenix.database.windows.net;Encrypt=False;"
+
+
+// Auth Db
+dotnet ef migrations add <Name> --project src/Auth/Auth.Data --startup-project src/Auth/Auth.Server --context AuthDbContext
+

@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<genItDiagram dslVersion="1.0.0.0" Id="35d24528-6b60-429e-9654-0c28414d8ac9" absoluteBounds="0, 0, 19.125, 16.875" name="AuthTest">
+  <modelRootMoniker name="/AuthTest" />
+  <nestedChildShapes>
+    <classShape Id="ed13aab3-11dd-4f32-8f55-a364e5296cef" absoluteBounds="8.625, 8.875, 2.125, 1.9689337042967479">
+      <entityModelMoniker name="/AuthTest/AspNetRoleClaims" />
+      <nestedChildShapes>
+        <elementListCompartment Id="53c00b90-dc88-4971-8fbc-496a8445b8b4" absoluteBounds="8.64, 9.185, 2.0949999999999998, 1.0325453380743661" name="PropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="25982566-1060-4bad-aeb8-f61596fea3f3" absoluteBounds="8.64, 10.227545338074366, 2.0949999999999998, 0.2531941831111908" name="NavPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="5241a1b9-31b0-4ed7-8d7d-d86663003cd0" absoluteBounds="8.64, 10.490739521185557, 2.0949999999999998, 0.2531941831111908" name="ServiceMethods" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5ec9f5c9-374f-4aea-a800-f008f34c6a14" absoluteBounds="8.625, 5.875, 2.125, 1.968933704296747">
+      <entityModelMoniker name="/AuthTest/AspNetRoles" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3154b7e1-8b45-44d2-b428-cfed392fb6c1" absoluteBounds="8.64, 6.1850000000000005, 2.0949999999999998, 1.0325453380743661" name="PropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="176c4fe9-c2b1-4a58-aeea-ef632e2f1b05" absoluteBounds="8.64, 7.2275453380743659, 2.0949999999999998, 0.2531941831111908" name="NavPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="4726d4e8-ad53-473a-b0b7-f74c3851ea12" absoluteBounds="8.64, 7.4907395211855565, 2.0949999999999998, 0.2531941831111908" name="ServiceMethods" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0f7ea9f0-5913-42a1-9aef-bf53c8170d15" absoluteBounds="5.25, 8.75, 2.25, 1.968933704296747">
+      <entityModelMoniker name="/AuthTest/AspNetUserClaims" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1df583a2-320b-4cb5-b47a-18a90eeb353b" absoluteBounds="5.265, 9.06, 2.2199999999999998, 1.0325453380743661" name="PropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="246fecd4-10d0-4ad6-a749-9c99ebc53306" absoluteBounds="5.265, 10.102545338074366, 2.2199999999999998, 0.2531941831111908" name="NavPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="c7b37938-4362-47d3-b926-078718123955" absoluteBounds="5.265, 10.365739521185557, 2.2199999999999998, 0.2531941831111908" name="ServiceMethods" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="dbdef6f7-3d4b-4520-902b-bfb8b82ceeb4" absoluteBounds="11.375, 1.125, 1.875, 1.9689337042967479">
+      <entityModelMoniker name="/AuthTest/AspNetUserLogins" />
+      <nestedChildShapes>
+        <elementListCompartment Id="494b73fb-5325-4111-97fe-f03a6e4c6713" absoluteBounds="11.39, 1.435, 1.8450000000000002, 1.0325453380743661" name="PropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="447d8997-739d-4780-8af7-549ef4b8eefe" absoluteBounds="11.39, 2.4775453380743659, 1.8450000000000002, 0.2531941831111908" name="NavPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="c4e690c7-3e05-41b5-a527-c24810c69215" absoluteBounds="11.39, 2.740739521185557, 1.8450000000000002, 0.2531941831111908" name="ServiceMethods" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="decc7bbf-3989-420a-9236-6638f68ec406" absoluteBounds="5.25, 5.875, 2.25, 1.5792581268151595">
+      <entityModelMoniker name="/AuthTest/AspNetUserRoles" />
+      <nestedChildShapes>
+        <elementListCompartment Id="840ead60-f814-4a90-9d52-b4bb96f4c392" absoluteBounds="5.2650000000000006, 6.185, 2.2199999999999998, 0.64286976059277845" name="PropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="749e967d-ea41-4edc-83ed-24d5390ea666" absoluteBounds="5.2650000000000006, 6.8378697605927785, 2.2199999999999998, 0.2531941831111908" name="NavPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="8b35b55c-55f3-4836-ab63-1be97bbb9c7f" absoluteBounds="5.2650000000000006, 7.1010639437039691, 2.2199999999999998, 0.2531941831111908" name="ServiceMethods" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4026544d-498f-4e25-b68f-3d0a45925603" absoluteBounds="1.25, 6.25, 2.25, 4.11214938044548">
+      <entityModelMoniker name="/AuthTest/AspNetUsers" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3c4b97c5-bd59-4f10-a6a1-192aadb5e7f8" absoluteBounds="1.2650000000000006, 6.5600000000000005, 2.2199999999999998, 3.1757610142230988" name="PropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="9325ef1e-e930-4b0c-80ce-4928df33a0e0" absoluteBounds="1.2649999999999997, 9.745761014223099, 2.2199999999999998, 0.2531941831111908" name="NavPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="379c95ef-8d0b-49b1-9041-8cf9847978bc" absoluteBounds="1.2649999999999997, 10.00895519733429, 2.2199999999999998, 0.25319418311119124" name="ServiceMethods" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1bbb841f-f8be-443a-8ac7-68c232868fa8" absoluteBounds="13.875, 1.125, 2.5, 1.9689337042967479">
+      <entityModelMoniker name="/AuthTest/AspNetUserTokens" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9223df25-5435-4dd1-a7e1-61e63584c085" absoluteBounds="13.89, 1.435, 2.4699999999999998, 1.0325453380743661" name="PropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="31167903-024f-4052-b5a5-c4794071821f" absoluteBounds="13.89, 2.4775453380743659, 2.4699999999999998, 0.2531941831111908" name="NavPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="c51a70ed-401d-4027-b77c-524bc0434ad6" absoluteBounds="13.89, 2.7407395211855565, 2.4699999999999998, 0.2531941831111908" name="ServiceMethods" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5fe23b7b-d8e6-4daf-b78e-6169a8f94dc6" absoluteBounds="5.875, 13.5, 2.625, 3.13796043674151">
+      <entityModelMoniker name="/AuthTest/FidoStoredCredential" />
+      <nestedChildShapes>
+        <elementListCompartment Id="197c28bd-aad7-4ee6-bf4a-2ce24b19c08e" absoluteBounds="5.8900000000000006, 13.810000000000002, 2.5949999999999998, 2.2015720705191293" name="PropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="73151744-12af-41be-9026-e9a12cb8e9e3" absoluteBounds="5.8900000000000006, 16.021572070519127, 2.5949999999999998, 0.2531941831111908" name="NavPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="534026a8-8c92-4da6-b43e-73390110203f" absoluteBounds="5.8900000000000006, 16.28476625363032, 2.5949999999999998, 0.2531941831111908" name="ServiceMethods" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8f3aebdf-6dec-4dac-a60f-db1c1af0579d" absoluteBounds="13.875, 10.5, 2.375, 4.3069871691862733">
+      <entityModelMoniker name="/AuthTest/OpenIddictApplications" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0fdaf5c3-9269-43de-8057-0264339d9d4d" absoluteBounds="13.89, 10.81, 2.3449999999999998, 3.3705988029638925" name="PropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="96e2401e-e2e0-44f3-9b20-7059068d8a00" absoluteBounds="13.89, 14.190598802963892, 2.3449999999999998, 0.2531941831111908" name="NavPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="a3bc0384-3a86-4a58-ba0f-e6134e9063e5" absoluteBounds="13.89, 14.453792986075083, 2.3449999999999998, 0.2531941831111908" name="ServiceMethods" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="dced2931-733f-441f-9aca-485081d639ad" absoluteBounds="16.5, 4.5, 2.375, 2.9431226480007169">
+      <entityModelMoniker name="/AuthTest/OpenIddictAuthorizations" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4e883419-24fd-4c41-8568-23f805a214f3" absoluteBounds="16.515, 4.8100000000000005, 2.3449999999999998, 2.0067342817783356" name="PropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="60d85bac-106d-46e1-ad50-42dc194b41e2" absoluteBounds="16.515, 6.8267342817783359, 2.3449999999999998, 0.2531941831111908" name="NavPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="8f9c7c1e-5e38-4513-a110-53bb6294a25b" absoluteBounds="16.515, 7.0899284648895264, 2.3449999999999998, 0.2531941831111908" name="ServiceMethods" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d1a6e2d9-6e8a-4b1f-9a5b-820141cc4ac2" absoluteBounds="14, 7.25, 2, 2.9431226480007169">
+      <entityModelMoniker name="/AuthTest/OpenIddictScopes" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5ca51db2-6e05-43f2-a334-dbe14b89cdce" absoluteBounds="14.015, 7.5600000000000005, 1.9700000000000002, 2.0067342817783356" name="PropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="40eb1db2-f3a7-42a0-ae01-9d7db1e69053" absoluteBounds="14.015, 9.5767342817783359, 1.9700000000000002, 0.2531941831111908" name="NavPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="6848ca17-cc93-4cc8-8304-ba14b8bd3f34" absoluteBounds="14.015, 9.8399284648895264, 1.9700000000000002, 0.2531941831111908" name="ServiceMethods" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="448a05d9-e672-41a7-a487-88619a7c2951" absoluteBounds="16.75, 7.75, 2.125, 3.7224738029638917">
+      <entityModelMoniker name="/AuthTest/OpenIddictTokens" />
+      <nestedChildShapes>
+        <elementListCompartment Id="87135274-7a9e-4873-b813-dac94e5a590e" absoluteBounds="16.765, 8.0599999999999987, 2.0949999999999998, 2.7860854367415109" name="PropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="66b9af83-989d-4a3c-8d48-8966447f8fe3" absoluteBounds="16.765, 10.856085436741511, 2.0949999999999998, 0.2531941831111908" name="NavPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="bd565395-3359-4ea4-bf58-c1c7a0204468" absoluteBounds="16.765, 11.119279619852701, 2.0949999999999998, 0.2531941831111908" name="ServiceMethods" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ea44dcc9-005b-43eb-9435-8c4fd31e46d9" absoluteBounds="1.375, 1.375, 2.125, 3.917311591704685">
+      <entityModelMoniker name="/AuthTest/Tenant" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f36f572d-1df7-42df-8909-20f7a98743e4" absoluteBounds="1.3899999999999997, 1.6850000000000005, 2.0949999999999998, 2.7860854367415109" name="PropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="695573b3-a24d-4329-938f-9f4b647d5e9e" absoluteBounds="1.3899999999999997, 4.4810854367415107, 2.0949999999999998, 0.2531941831111908" name="NavPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="3f01309c-de05-451c-90b5-b6d90ce8c96b" absoluteBounds="1.3899999999999997, 4.7442796198527013, 2.0949999999999998, 0.44803197185198462" name="ServiceMethods" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <moduleShape Id="fb086657-a154-4e25-8092-52baf72baf9b" absoluteBounds="0.75, 0.5, 1.5, 0.375">
+      <moduleModelMoniker name="/AuthTest/Auth" />
+    </moduleShape>
+    <enumShape Id="40677f70-39e2-4913-9499-d5d1240682e0" absoluteBounds="4.25, 1.5, 1.5, 1.2477075493335725">
+      <enumModelMoniker name="/AuthTest/AuthMode" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6074fe15-febb-4b00-b438-98e273ab2964" absoluteBounds="4.2650000000000006, 1.8100000000000005, 1.4700000000000002, 0.83770754933357239" name="MembersCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </enumShape>
+  </nestedChildShapes>
+</genItDiagram>

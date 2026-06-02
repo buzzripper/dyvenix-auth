@@ -1,0 +1,19 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/misc/">
+    <File Path="misc/EFCommands.txt" />
+  </Folder>
+  <Folder Name="/src/" />
+  <Folder Name="/src/AdAgent/">
+    <Project Path="src/AdAgent/AdAgent.Api/AdAgent.Api.csproj" />
+    <Project Path="src/AdAgent/AdAgent.Shared/AdAgent.Shared.csproj" />
+  </Folder>
+  <Folder Name="/src/Auth/" />
+  <Folder Name="/tests/">
+    <Project Path="tests/Auth.UnitTests/Auth.UnitTests.csproj" Id="08773052-0942-4cd4-a08e-c7cd552250c0" />
+  </Folder>
+  </Solution>
