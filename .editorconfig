@@ -1,0 +1,15 @@
+root = true
+
+# Treat *.g.cs files as ordinary source rather than auto-generated code.
+# We own the code-gen templates, so we want the project-wide
+# <Nullable>enable</Nullable> setting to apply to them. This makes the
+# nullable annotation (?) meaningful in these files and resolves CS8669.
+[*.g.cs]
+generated_code = false
+
+[*.cs]
+# CA1873: Avoid potentially expensive logging.
+# Suppressed because ILogger already gates message template parsing/formatting
+# behind an IsEnabled level check; passing simple property arguments to logging
+# calls is an acceptable trade-off for readability across the solution.
+dotnet_diagnostic.CA1873.severity = none

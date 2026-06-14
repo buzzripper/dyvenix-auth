@@ -3,8 +3,8 @@ Entity Framework Commands
 ---------------------------------
 
 Add-Migration <migration name> -Project Auth.Data -StartupProject Auth.Server
-// ------ Update Database ------
 
+// ------ Update Database ------
 
 // Local
 Update-Database -Project Auth.Data -StartupProject Auth.Server -Context AuthDbContext -Connection "Data Source=localhost;Initial Catalog=Auth;Integrated Security=True;Encrypt=False;"
@@ -16,6 +16,9 @@ Update-Database -Project Auth.Data -StartupProject Auth.Server -Context AuthDbCo
 Scaffold-DbContext "Password=dyv_pwd1;User ID=dyvenix_admin;Initial Catalog=dyvenix;Data Source=localhost;Encrypt=False;" Microsoft.EntityFrameworkCore.SqlServer -Project Common.Data -OutputDir Entities -ContextDir Contexts -Context Db -ContextNamespace  Common.Data -Force -NoOnConfiguring
 
 Add-Migration -Name Initial -Project app1.data
+
+
+
 
 // Local db
 Update-Database -Project Auth.Data -Connection "Server=.;Database=Auth;Trusted_Connection=True;TrustServerCertificate=True"

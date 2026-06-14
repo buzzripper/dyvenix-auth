@@ -1,20 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <AssemblyName>Dyvenix.Auth.Shared</AssemblyName>
-    <RootNamespace>Dyvenix.Auth.Shared</RootNamespace>
-    <Configurations>Debug;Release;Dbg-Ext</Configurations>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AssemblyName>Dyvenix.Auth.Shared</AssemblyName>
+		<RootNamespace>Dyvenix.Auth.Shared</RootNamespace>
+		<Configurations>Debug;Release;Debug-Local</Configurations>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Dyvenix.Core" Version="1.0.1" />
-  </ItemGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
 
 </Project>

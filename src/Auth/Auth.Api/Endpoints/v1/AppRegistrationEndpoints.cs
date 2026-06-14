@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using System.Security.Claims;
 
 namespace Dyvenix.Auth.Api.Endpoints.v1;
 
@@ -34,17 +35,17 @@ public static class AppRegistrationEndpoints
 		group.MapPost("Create", Create)
 			.Produces<string>(StatusCodes.Status200OK)
 			.Produces(StatusCodes.Status400BadRequest)
-			.RequireAuthorization(AuthPermissions.Write);
+			.RequireAuthorization(AuthPermissions.Admin);
 
 		group.MapPut("Update", Update)
 			.Produces(StatusCodes.Status200OK)
 			.Produces(StatusCodes.Status404NotFound)
-			.RequireAuthorization(AuthPermissions.Write);
+			.RequireAuthorization(AuthPermissions.Admin);
 
 		group.MapDelete("Delete/{id}", Delete)
 			.Produces(StatusCodes.Status200OK)
 			.Produces(StatusCodes.Status404NotFound)
-			.RequireAuthorization(AuthPermissions.Write);
+			.RequireAuthorization(AuthPermissions.Admin);
 
 		return app;
 	}
@@ -61,8 +62,11 @@ public static class AppRegistrationEndpoints
 		return Result<AppRegistrationDto?>.Ok(dto);
 	}
 
-	public static async Task<Result<IReadOnlyList<AppRegistrationDto>>> GetAll(IAppRegistrationService appRegistrationService)
+	public static async Task<Result<IReadOnlyList<AppRegistrationDto>>> GetAll(IAppRegistrationService appRegistrationService, ClaimsPrincipal user)
 	{
+		var claims = user.Claims.ToList();
+		var claimsSummary = user.Claims.Select(c => $"{c.Type}: {c.Value}").ToList();
+
 		var data = await appRegistrationService.GetAll();
 		return Result<IReadOnlyList<AppRegistrationDto>>.Ok(data);
 	}

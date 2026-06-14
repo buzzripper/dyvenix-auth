@@ -4,6 +4,11 @@
  * the license and the contributors participating to this project.
  */
 
+using Dyvenix.Auth.Data;
+using Dyvenix.Auth.Data.Context;
+using Dyvenix.Auth.Server.Helpers;
+using Dyvenix.Auth.Server.ViewModels.Authorization;
+using Dyvenix.Auth.Shared.DTOs;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -13,12 +18,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Abstractions;
+using OpenIddict.Core;
+using OpenIddict.EntityFrameworkCore.Models;
 using OpenIddict.Server.AspNetCore;
-using Dyvenix.Auth.Data;
-using Dyvenix.Auth.Data.Context;
-using Dyvenix.Auth.Server.Helpers;
-using Dyvenix.Auth.Server.ViewModels.Authorization;
-using Dyvenix.Auth.Shared.DTOs;
+using System.Diagnostics.CodeAnalysis;
 using System.Security.Claims;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
@@ -28,7 +31,8 @@ public class AuthorizationController : Controller
 {
 	private const string TENANT_ID_CLAIM_TYPE = "tenant_id";
 
-	private readonly IOpenIddictApplicationManager _applicationManager;
+	//private readonly IOpenIddictApplicationManager _applicationManager;
+	private readonly OpenIddictApplicationManager<OpenIddictEntityFrameworkCoreApplication> _applicationManager;
 	private readonly IOpenIddictAuthorizationManager _authorizationManager;
 	private readonly IOpenIddictScopeManager _scopeManager;
 	private readonly SignInManager<ApplicationUser> _signInManager;
@@ -37,7 +41,8 @@ public class AuthorizationController : Controller
 	private readonly AuthDbContext _dbContext;
 
 	public AuthorizationController(
-		IOpenIddictApplicationManager applicationManager,
+		//IOpenIddictApplicationManager applicationManager,
+		OpenIddictApplicationManager<OpenIddictEntityFrameworkCoreApplication> applicationManager,
 		IOpenIddictAuthorizationManager authorizationManager,
 		IOpenIddictScopeManager scopeManager,
 		SignInManager<ApplicationUser> signInManager,
@@ -132,7 +137,7 @@ public class AuthorizationController : Controller
 		{
 			// If the consent is external (e.g when authorizations are granted by a sysadmin),
 			// immediately return an error if no authorization can be found in the database.
-			case ConsentTypes.External when !authorizations.Any():
+			case ConsentTypes.External when authorizations.Count == 0:
 				return Forbid(
 					authenticationSchemes: OpenIddictServerAspNetCoreDefaults.AuthenticationScheme,
 					properties: new AuthenticationProperties(new Dictionary<string, string>
@@ -145,8 +150,8 @@ public class AuthorizationController : Controller
 			// If the consent is implicit or if an authorization was found,
 			// return an authorization response without displaying the consent form.
 			case ConsentTypes.Implicit:
-			case ConsentTypes.External when authorizations.Any():
-			case ConsentTypes.Explicit when authorizations.Any() && !request.HasPromptValue(PromptValues.Consent):
+			case ConsentTypes.External when authorizations.Count > 0:
+			case ConsentTypes.Explicit when authorizations.Count > 0 && !request.HasPromptValue(PromptValues.Consent):
 				var principal = await _signInManager.CreateUserPrincipalAsync(user);
 
 				AddTenantClaim(principal, user);
@@ -196,8 +201,8 @@ public class AuthorizationController : Controller
 			default:
 				return View(new AuthorizeViewModel
 				{
-					ApplicationName = await _applicationManager.GetDisplayNameAsync(application),
-					Scope = request.Scope
+					ApplicationName = await _applicationManager.GetDisplayNameAsync(application) ?? string.Empty,
+					Scope = request.Scope ?? string.Empty
 				});
 		}
 	}
@@ -228,7 +233,7 @@ public class AuthorizationController : Controller
 		// Note: the same check is already made in the other action but is repeated
 		// here to ensure a malicious user can't abuse this POST-only endpoint and
 		// force it to return a valid response without the external authorization.
-		if (!authorizations.Any() && await _applicationManager.HasConsentTypeAsync(application, ConsentTypes.External))
+		if (authorizations.Count == 0 && await _applicationManager.HasConsentTypeAsync(application, ConsentTypes.External))
 		{
 			return Forbid(
 				authenticationSchemes: OpenIddictServerAspNetCoreDefaults.AuthenticationScheme,
@@ -335,9 +340,14 @@ public class AuthorizationController : Controller
 		// Look up the tenant associated with the client application
 		var tenantId = await _dbContext.TenantApplication
 			.AsNoTracking()
-			.Where(ta => ta.ClientId == request.ClientId)
+			.Where(ta => ta.ApplicationId == application.Id)
 			.Select(ta => ta.TenantId)
 			.FirstOrDefaultAsync();
+
+		if (tenantId == default)
+		{
+			throw new InvalidOperationException("The tenant associated with this client application cannot be found.");
+		}
 
 		// Create the claims-based identity that will be used by OpenIddict to generate tokens.
 		var identity = new ClaimsIdentity(
@@ -389,6 +399,8 @@ public class AuthorizationController : Controller
 
 	private async Task<IActionResult> HandleExchangeCodeGrantType()
 	{
+		ApplicationUser? user;
+
 		// Retrieve the claims principal stored in the authorization code/device code/refresh token.
 		var principal = (await HttpContext.AuthenticateAsync(OpenIddictServerAspNetCoreDefaults.AuthenticationScheme)).Principal;
 
@@ -396,8 +408,9 @@ public class AuthorizationController : Controller
 		// Note: if you want to automatically invalidate the authorization code/refresh token
 		// when the user password/roles change, use the following line instead:
 		// var user = _signInManager.ValidateSecurityStampAsync(info.Principal);
-		var user = await _userManager.GetUserAsync(principal);
-		if (user == null)
+		user = await _userManager.GetUserAsync(principal);
+
+		if (principal == null || user == null)
 		{
 			return Forbid(
 				authenticationSchemes: OpenIddictServerAspNetCoreDefaults.AuthenticationScheme,
@@ -440,6 +453,7 @@ public class AuthorizationController : Controller
 	/// Local tenants ? Identity login page. External tenants ? redirect to their external IdP,
 	/// with a callback to ExternalLoginCallback that finishes the Identity sign-in.
 	/// </summary>
+	[SuppressMessage("Performance", "CA1859:Use concrete types when possible for improved performance", Justification = "Intentionally returns the IActionResult abstraction.")]
 	private IActionResult ChallengeForTenant(IList<KeyValuePair<string, StringValues>> queryParams)
 	{
 		var authorizeUrl = Request.PathBase + Request.Path + QueryString.Create(queryParams);
@@ -458,7 +472,7 @@ public class AuthorizationController : Controller
 			properties: new AuthenticationProperties { RedirectUri = authorizeUrl });
 	}
 
-	private IEnumerable<string> GetDestinations(Claim claim, ClaimsPrincipal principal)
+	private static IEnumerable<string> GetDestinations(Claim claim, ClaimsPrincipal principal)
 	{
 		// Note: by default, claims are NOT automatically included in the access and identity tokens.
 		// To allow OpenIddict to serialize them, you must attach them a destination, that specifies

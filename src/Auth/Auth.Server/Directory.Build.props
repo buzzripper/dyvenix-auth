@@ -1,0 +1,12 @@
+<Project>
+	<PropertyGroup>
+		<UseProjectRefs Condition="'$(Configuration)' == 'Debug-Local'">true</UseProjectRefs>
+		<UseProjectRefs Condition="'$(UseProjectRefs)' == ''">false</UseProjectRefs>
+	</PropertyGroup>
+	<ItemGroup Condition="'$(UseProjectRefs)' == 'false'">
+		<PackageReference Include="Dyvenix.AdAgent.Shared" Version="1.0.0" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(UseProjectRefs)' == 'true'">
+		<ProjectReference Include="..\..\AdAgent\AdAgent.Shared\AdAgent.Shared.csproj" />
+	</ItemGroup>
+</Project>

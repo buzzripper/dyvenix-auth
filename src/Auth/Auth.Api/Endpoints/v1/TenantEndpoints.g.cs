@@ -1,16 +1,13 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Dyvenix.Auth.Data.Entities;
-using Dyvenix.Auth.Api.Services.v1;
 using Dyvenix.Auth.Shared.Contracts.v1;
 using Dyvenix.Auth.Shared.DTOs;
 using Dyvenix.Auth.Shared.Requests.v1;
 using Dyvenix.Core.DTOs;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 
-namespace Dyvenix.Auth.Endpoints.v1;
+namespace Dyvenix.Auth.Api.Endpoints.v1;
 
 public static class TenantEndpoints
 {
@@ -40,7 +37,7 @@ public static class TenantEndpoints
 		group.MapDelete("Delete", Delete)
 			.Produces(StatusCodes.Status200OK)
 			.Produces(StatusCodes.Status404NotFound);
-	
+
 		return app;
 	}
 

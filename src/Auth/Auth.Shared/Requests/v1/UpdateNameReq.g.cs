@@ -6,5 +6,5 @@ public class UpdateNameReq
 	public Guid Id { get; set; }
 
 	// Required properties
-	public string Name { get; set; }
+	public string Name { get; set; } = null!;
 }

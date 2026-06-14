@@ -60,7 +60,7 @@ public class AppRegistrationService(IOpenIddictApplicationManager appManager, Au
 		var tenantApp = new TenantApplication
 		{
 			TenantId = request.TenantId,
-			ClientId = request.ClientId
+			ApplicationId = id ?? string.Empty
 		};
 		await _dbContext.TenantApplication.AddAsync(tenantApp);
 		await _dbContext.SaveChangesAsync();

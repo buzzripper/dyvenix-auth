@@ -1,0 +1,12 @@
+<Project>
+	<PropertyGroup>
+		<UseProjectRefs Condition="'$(Configuration)' == 'Debug-Local'">true</UseProjectRefs>
+		<UseProjectRefs Condition="'$(UseProjectRefs)' == ''">false</UseProjectRefs>
+	</PropertyGroup>
+	<ItemGroup Condition="'$(UseProjectRefs)' == 'false'">
+		<PackageReference Include="Dyvenix.Core" Version="1.0.3" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(UseProjectRefs)' == 'true'">
+		<ProjectReference Include="..\..\..\..\dyvenix-core\src\Dyvenix.Core\Dyvenix.Core.csproj" />
+	</ItemGroup>
+</Project>
