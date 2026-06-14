@@ -1,12 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-	<ItemGroup>
-	  <Compile Remove="Config\**" />
-	  <Content Remove="Config\**" />
-	  <EmbeddedResource Remove="Config\**" />
-	  <None Remove="Config\**" />
-	</ItemGroup>
-
 	<PropertyGroup>
 		<TargetFramework>net10.0</TargetFramework>
 		<Nullable>enable</Nullable>
