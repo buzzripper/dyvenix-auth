@@ -6,7 +6,7 @@ on:
       - Develop
       - main
     paths:
-      - 'src/AdAgent/AdAgent.Shared/AdAgent.csproj'
+      - 'src/AdAgent/AdAgent.Shared/AdAgent.Shared.csproj'
   workflow_dispatch:
 
 env:
