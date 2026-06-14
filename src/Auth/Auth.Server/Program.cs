@@ -1,3 +1,13 @@
+using Dyvenix.Auth.Api.Extensions;
+using Dyvenix.Auth.Data;
+using Dyvenix.Auth.Data.Context;
+using Dyvenix.Auth.Server;
+using Dyvenix.Auth.Server.Services;
+using Dyvenix.Auth.Shared.Authorization;
+using Dyvenix.Core.Api.Authorization;
+using Dyvenix.Core.Api.Extensions.BuilderExtensions;
+using Dyvenix.Core.Api.Extensions.SvcCollExtensions;
+using Dyvenix.Core.Api.Extensions.WebAppExtensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -5,52 +15,46 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
-using Dyvenix.Auth.Api.Extensions;
-using Dyvenix.Auth.Data;
-using Dyvenix.Auth.Data.Context;
-using Dyvenix.Auth.Server;
-using Dyvenix.Auth.Server.Services;
-using Dyvenix.Auth.Shared.Authorization;
-using Dyvenix.Common.Api.Authorization;
-using Dyvenix.Common.Api.Extensions;
 using Quartz;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
 var builder = WebApplication.CreateBuilder(args);
+var services = builder.Services;
+var configuration = builder.Configuration;
 
 // Register health check services (normally done by AddServiceDefaults)
-builder.AddDefaultHealthChecks();
+services.AddDefaultHealthChecks();
 
 // Configure OpenTelemetry logging
 builder.ConfigureOpenTelemetry();
 
 // MVC + Razor Pages
-builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages()
+services.AddControllersWithViews();
+services.AddRazorPages()
 	.AddRazorRuntimeCompilation();
 
 // Tenant context (scoped per request, set by TenantResolutionMiddleware)
-builder.Services.AddScoped<ITenantContext, TenantContext>();
+services.AddScoped<ITenantContext, TenantContext>();
 
 // Entity Framework + SQL Server + OpenIddict entity sets
-builder.Services.AddDbContext<AuthDbContext>(options =>
+services.AddDbContext<AuthDbContext>(options =>
 {
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
 		b => b.MigrationsAssembly("Dyvenix.Auth.Data"));
 	options.UseOpenIddict();
 });
 
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+services.AddDatabaseDeveloperPageExceptionFilter();
 
 // ASP.NET Core Identity
-builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
+services.AddIdentity<ApplicationUser, ApplicationRole>()
 	.AddEntityFrameworkStores<AuthDbContext>()
 	.AddDefaultTokenProviders()
 	.AddDefaultUI();
 
 // Session
-builder.Services.AddDistributedMemoryCache();
-builder.Services.AddSession(options =>
+services.AddDistributedMemoryCache();
+services.AddSession(options =>
 {
 	options.IdleTimeout = TimeSpan.FromMinutes(2);
 	options.Cookie.HttpOnly = true;
@@ -59,7 +63,7 @@ builder.Services.AddSession(options =>
 });
 
 // Identity options — use OpenIddict JWT claim types
-builder.Services.Configure<IdentityOptions>(options =>
+services.Configure<IdentityOptions>(options =>
 {
 	options.ClaimsIdentity.UserNameClaimType = Claims.Name;
 	options.ClaimsIdentity.UserIdClaimType = Claims.Subject;
@@ -70,7 +74,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 // CORS — driven by AllowedHosts in appsettings.json
 var allowedHosts = builder.Configuration["AllowedHosts"] ?? "*";
-builder.Services.AddCors(options =>
+services.AddCors(options =>
 {
 	options.AddPolicy("AllowAllOrigins", policy =>
 	{
@@ -101,14 +105,14 @@ builder.Services.AddCors(options =>
 });
 
 // Authentication — cookie-based default for Identity pages
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);
+services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);
 
 // Required so that dynamically-registered OpenIdConnect schemes (see Worker)
 // get their StringDataFormat, Backchannel, etc. initialised by post-configure.
-builder.Services.TryAddEnumerable(ServiceDescriptor.Singleton<IPostConfigureOptions<OpenIdConnectOptions>, OpenIdConnectPostConfigureOptions>());
+services.TryAddEnumerable(ServiceDescriptor.Singleton<IPostConfigureOptions<OpenIdConnectOptions>, OpenIdConnectPostConfigureOptions>());
 
 // OpenIddict
-builder.Services.AddOpenIddict()
+services.AddOpenIddict()
 	.AddCore(options =>
 	{
 		options.UseEntityFrameworkCore()
@@ -150,32 +154,35 @@ builder.Services.AddOpenIddict()
 	});
 
 // Worker (seeds tenants, users, registers external OIDC schemes and OpenIddict applications)
-builder.Services.AddHostedService<Worker>();
+services.AddHostedService<Worker>();
 
 // Auth.Api services (system endpoints, health, documentation)
-builder.Services.AddPermissionAuthorization();
-builder.Services.AddAuthApiServices(false);
-builder.Services.AddBrandImgRepository(builder.Configuration);
-builder.Services.AddStandardApiVersioning();
+services.AddPermissionAuthorization();
+services.AddAuthApiServices();
+services.AddBrandImgRepository(builder.Configuration);
+services.AddStandardApiVersioning();
 
-builder.Services.AddScoped<IClientRouter, ClientRouter>();
+services.AddScoped<IClientRouter, ClientRouter>();
 
-builder.Services.AddSingleton<PermissionRegistry>();
+services.AddSingleton<PermissionRegistry>();
 
-builder.Services.Configure<ForwardedHeadersOptions>(options =>
+services.Configure<ForwardedHeadersOptions>(options =>
 {
-    options.ForwardedHeaders =
-        ForwardedHeaders.XForwardedFor |
-        ForwardedHeaders.XForwardedProto;
+	options.ForwardedHeaders =
+		ForwardedHeaders.XForwardedFor |
+		ForwardedHeaders.XForwardedProto;
 
-    // Optional but commonly needed in cloud hosting:
-    options.KnownIPNetworks.Clear();
-    options.KnownProxies.Clear();
+	// Optional but commonly needed in cloud hosting:
+	options.KnownIPNetworks.Clear();
+	options.KnownProxies.Clear();
 });
 
 //----------------------------------------------------------------------------------------------
 
 var app = builder.Build();
+
+//Global exception handler
+app.UseExceptionHandler(_ => { });
 
 // Register this module's permissions
 app.Services.GetRequiredService<PermissionRegistry>()
@@ -213,7 +220,7 @@ app.MapRazorPages();
 
 // Auth.Api minimal API endpoints
 app.MapEndpoints();
-app.MapDefaultEndpoints();
+app.MapHealthEndpoints();
 
 // Enable API documentation in development
 if (app.Environment.IsDevelopment())

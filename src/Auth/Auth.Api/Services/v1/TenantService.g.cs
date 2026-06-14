@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
 using Dyvenix.Auth.Data.Context;
-using Dyvenix.Auth.Shared.DTOs;
 using Dyvenix.Auth.Data.Entities;
 using Dyvenix.Auth.Shared.Contracts.v1;
+using Dyvenix.Auth.Shared.DTOs;
 using Dyvenix.Auth.Shared.Requests.v1;
 using Dyvenix.Core.Exceptions;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Dyvenix.Auth.Api.Services.v1;
 

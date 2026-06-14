@@ -26,13 +26,11 @@ public class TenantResolutionMiddleware(RequestDelegate next)
 			{
 				((TenantContext)tenantContext).Set(tenant);
 			}
-		} else
+		}
+		else
 		{
 
 		}
-
-
-
 		await next(context);
 	}
 

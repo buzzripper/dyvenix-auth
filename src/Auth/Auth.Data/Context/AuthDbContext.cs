@@ -57,11 +57,11 @@ public partial class AuthDbContext : IdentityDbContext<ApplicationUser, Applicat
 		modelBuilder.Entity<TenantApplication>(entity =>
 		{
 			entity.ToTable("TenantApplication");
-			entity.HasKey(e => new { e.TenantId, e.ClientId });
+			entity.HasKey(e => new { e.TenantId, e.ApplicationId });
 			entity.Property(e => e.TenantId).IsRequired();
-			entity.Property(e => e.ClientId).IsRequired().HasMaxLength(100);
+			entity.Property(e => e.ApplicationId).IsRequired().HasMaxLength(100);
 
-			entity.HasIndex(e => new { e.ClientId }, "IX_TenantApplication_ClientId");
+			entity.HasIndex(e => new { e.ApplicationId }, "IX_TenantApplication_ClientId");
 		});
 
 		#endregion

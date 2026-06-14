@@ -1,9 +1,10 @@
 using Dyvenix.AdAgent.Api.Config;
 using Dyvenix.AdAgent.Api.Endpoints.v1;
-using Dyvenix.App1.Common.Api.Extensions.BuilderExtensions;
-using Dyvenix.App1.Common.Api.Extensions.SvcCollExtensions;
-using Dyvenix.App1.Common.Api.Extensions.WebAppExtensions;
-using Dyvenix.App1.Common.Api.Filters;
+using Dyvenix.Auth.Api.Extensions;
+using Dyvenix.Core.Api.Extensions.BuilderExtensions;
+using Dyvenix.Core.Api.Extensions.SvcCollExtensions;
+using Dyvenix.Core.Api.Extensions.WebAppExtensions;
+using Dyvenix.Core.Api.Handlers;
 using Scalar.AspNetCore;
 using Cv1 = Dyvenix.AdAgent.Shared.Contracts.v1;
 using Sv1 = Dyvenix.AdAgent.Api.Services.v1;
@@ -18,8 +19,9 @@ builder.ConfigureOpenTelemetry();
 // Add .NET services
 services.AddServiceDiscovery();
 services.AddOpenApi();
+services.AddExceptionHandler<ApiExceptionHandler>();
 
-// Add Common services
+// Add Core services
 services.AddDefaultHealthChecks();
 services.AddStandardApiVersioning();
 services.AddPermissionAuthorization();
@@ -28,12 +30,13 @@ if (builder.Environment.IsEnvironment("Testing"))
 else
 	services.AddJwtBearerAuthentication(builder.Configuration);
 
+services.AddAuthApiServices();
+
 // Add AdAgent.API services
 var adAgentConfig = new ConfigRepository().GetConfig();
 services.AddScoped<IConfigRepository, ConfigRepository>();
 services.AddSingleton(adAgentConfig);
 services.AddScoped<Cv1.IAdService, Sv1.AdService>();
-services.AddScoped<ApiExceptionFilter<Sv1.AdService>>();
 services.AddCurrentUserServices();
 
 

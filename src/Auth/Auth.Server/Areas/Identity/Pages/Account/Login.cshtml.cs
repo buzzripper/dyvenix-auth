@@ -148,8 +148,11 @@ namespace Dyvenix.Auth.Server.Areas.Identity.Pages.Account
 					// This doesn't count login failures towards account lockout
 					// To enable password failures to trigger account lockout, set lockoutOnFailure: true
 					var result = await _signInManager.PasswordSignInAsync(user, Input.Password, Input.RememberMe, lockoutOnFailure: false);
-					_logger.LogInformation("PasswordSignIn for {Email}: Succeeded={Succeeded}, IsLockedOut={Locked}, RequiresTwoFactor={TwoFactor}, IsNotAllowed={NotAllowed}",
-						Input.Email, result.Succeeded, result.IsLockedOut, result.RequiresTwoFactor, result.IsNotAllowed);
+					if (_logger.IsEnabled(LogLevel.Information))
+					{
+						_logger.LogInformation("PasswordSignIn for {Email}: Succeeded={Succeeded}, IsLockedOut={Locked}, RequiresTwoFactor={TwoFactor}, IsNotAllowed={NotAllowed}",
+							Input.Email, result.Succeeded, result.IsLockedOut, result.RequiresTwoFactor, result.IsNotAllowed);
+					}
 					if (result.Succeeded)
 					{
 						_logger.LogInformation("User logged in.");

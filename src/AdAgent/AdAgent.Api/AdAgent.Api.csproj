@@ -7,10 +7,10 @@
 		<Nullable>enable</Nullable>
 		<AssemblyName>Dyvenix.AdAgent.Api</AssemblyName>
 		<RootNamespace>Dyvenix.AdAgent.Api</RootNamespace>
+		<Configurations>Debug;Release;Debug-Local</Configurations>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Dyvenix.App1.Common.Api" Version="1.0.5" />
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.8" />
 		<PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="10.0.8" />
 		<PackageReference Include="Asp.Versioning.Mvc" Version="10.0.0" />
@@ -20,6 +20,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\Auth\Auth.Api\Auth.Api.csproj" />
 	  <ProjectReference Include="..\AdAgent.Shared\AdAgent.Shared.csproj" />
 	</ItemGroup>
 

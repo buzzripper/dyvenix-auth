@@ -1,0 +1,51 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug-Local" />
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/ext/" />
+  <Folder Name="/ext/core/">
+    <Project Path="../dyvenix-core/src/Dyvenix.Core.Api/Dyvenix.Core.Api.csproj" />
+    <Project Path="../dyvenix-core/src/Dyvenix.Core/Dyvenix.Core.csproj" />
+  </Folder>
+  <Folder Name="/misc/">
+    <File Path="misc/EFCommands.txt" />
+  </Folder>
+  <Folder Name="/src/" />
+  <Folder Name="/src/AdAgent/">
+    <Project Path="src/AdAgent/AdAgent.Api/AdAgent.Api.csproj">
+      <BuildType Solution="*|x64" Project="Debug" />
+      <BuildType Solution="*|x86" Project="Debug" />
+      <Build Solution="*|Any CPU" Project="false" />
+    </Project>
+    <Project Path="src/AdAgent/AdAgent.Shared/AdAgent.Shared.csproj">
+      <BuildType Project="Debug" />
+    </Project>
+  </Folder>
+  <Folder Name="/src/Auth/">
+    <Project Path="src/Auth/Auth.Api/Auth.Api.csproj">
+      <BuildType Solution="*|x64" Project="Debug" />
+      <BuildType Solution="*|x86" Project="Debug" />
+    </Project>
+    <Project Path="src/Auth/Auth.Data/Auth.Data.csproj">
+      <BuildType Solution="*|x64" Project="Debug" />
+      <BuildType Solution="*|x86" Project="Debug" />
+    </Project>
+    <Project Path="src/Auth/Auth.Server/Auth.Server.csproj">
+      <BuildType Project="Debug" />
+    </Project>
+    <Project Path="src/Auth/Auth.Shared/Auth.Shared.csproj">
+      <BuildType Solution="*|x64" Project="Debug" />
+      <BuildType Solution="*|x86" Project="Debug" />
+    </Project>
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Auth.UnitTests/Auth.UnitTests.csproj" Id="08773052-0942-4cd4-a08e-c7cd552250c0">
+      <BuildType Solution="*|x64" Project="Debug" />
+      <BuildType Solution="*|x86" Project="Debug" />
+      <Build Solution="*|Any CPU" Project="false" />
+    </Project>
+  </Folder>
+  </Solution>
