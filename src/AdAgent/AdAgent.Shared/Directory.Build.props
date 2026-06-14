@@ -4,7 +4,7 @@
 		<UseProjectRefs Condition="'$(UseProjectRefs)' == ''">false</UseProjectRefs>
 	</PropertyGroup>
 	<ItemGroup Condition="'$(UseProjectRefs)' == 'false'">
-		<PackageReference Include="Dyvenix.Core" Version="1.0.3" />
+		<PackageReference Include="Dyvenix.Core" Version="1.0.4" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(UseProjectRefs)' == 'true'">
 		<ProjectReference Include="..\..\..\..\dyvenix-core\src\Dyvenix.Core\Dyvenix.Core.csproj" />
