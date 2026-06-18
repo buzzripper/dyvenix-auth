@@ -8,6 +8,7 @@
 		<AssemblyName>Dyvenix.Auth.Server</AssemblyName>
 		<UserSecretsId>a9d7b9a9-56eb-45f0-9839-40b7f2459d0c</UserSecretsId>
 		<Configurations>Debug;Release;Dbg-Ext</Configurations>
+		<OutputType>Exe</OutputType>
 	</PropertyGroup>
 
 	<ItemGroup>

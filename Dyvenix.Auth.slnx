@@ -9,9 +9,7 @@
   </Folder>
   <Folder Name="/src/" />
   <Folder Name="/src/AdAgent/">
-    <Project Path="src/AdAgent/AdAgent.Api/AdAgent.Api.csproj">
-      <Build Solution="Debug|Any CPU" Project="false" />
-    </Project>
+    <Project Path="src/AdAgent/AdAgent.Api/AdAgent.Api.csproj" />
     <Project Path="src/AdAgent/AdAgent.Shared/AdAgent.Shared.csproj" />
   </Folder>
   <Folder Name="/src/Auth/">
