@@ -461,7 +461,7 @@ public class AuthorizationController : Controller
 
 		if (tenant?.AuthMode == AuthMode.ExternalOidc)
 		{
-			var schemeName = $"oidc-{tenant.Slug}";
+			var schemeName = $"oidc-{tenant.Key}";
 			var callbackUrl = $"/Identity/Account/ExternalLoginCallback?returnUrl={Uri.EscapeDataString(authorizeUrl)}";
 			var properties = _signInManager.ConfigureExternalAuthenticationProperties(schemeName, callbackUrl);
 			return Challenge(properties, schemeName);

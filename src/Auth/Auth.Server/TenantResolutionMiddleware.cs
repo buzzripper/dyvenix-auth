@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Dyvenix.Auth.Server;
 
 /// <summary>
-/// Middleware that resolves the current tenant from the acr_values query parameter (acr_values=tenant:slug)
+/// Middleware that resolves the current tenant from the acr_values query parameter (acr_values=tenant:key)
 /// or from the return URL's acr_values during post-back flows. Sets the resolved tenant in ITenantContext
 /// so it's available to EF Core query filters and downstream components.
 /// </summary>
@@ -13,14 +13,14 @@ public class TenantResolutionMiddleware(RequestDelegate next)
 {
 	public async Task InvokeAsync(HttpContext context, AuthDbContext dbContext, ITenantContext tenantContext)
 	{
-		// Attempt to extract tenant slug from acr_values or returnUrl query parameters
-		var tenantSlug = ExtractTenantSlug(context);
-		if (!string.IsNullOrEmpty(tenantSlug))
+		// Attempt to extract tenant key from acr_values or returnUrl query parameters
+		var tenantKey = ExtractTenantKey(context);
+		if (!string.IsNullOrEmpty(tenantKey))
 		{
 			// Query without the global filter to resolve the tenant itself
 			var tenant = await dbContext.Tenant
 				.AsNoTracking()
-				.FirstOrDefaultAsync(t => t.Slug == tenantSlug && t.IsActive);
+				.FirstOrDefaultAsync(t => t.Key == tenantKey && t.IsActive);
 
 			if (tenant != null)
 			{
@@ -34,7 +34,7 @@ public class TenantResolutionMiddleware(RequestDelegate next)
 		await next(context);
 	}
 
-	private static string? ExtractTenantSlug(HttpContext context)
+	private static string? ExtractTenantKey(HttpContext context)
 	{
 		// Check acr_values in query string (authorize endpoint)
 		var acrValues = context.Request.Query["acr_values"].FirstOrDefault();
@@ -65,7 +65,7 @@ public class TenantResolutionMiddleware(RequestDelegate next)
 		if (string.IsNullOrEmpty(acrValues))
 			return null;
 
-		// Parse "tenant:slug" from acr_values (may contain multiple space-separated values)
+		// Parse "tenant:key" from acr_values (may contain multiple space-separated values)
 		foreach (var part in acrValues.Split(' ', StringSplitOptions.RemoveEmptyEntries))
 		{
 			if (part.StartsWith("tenant:", StringComparison.OrdinalIgnoreCase))

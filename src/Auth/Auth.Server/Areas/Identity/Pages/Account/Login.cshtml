@@ -29,12 +29,12 @@
 			<form id="account" method="post">
 				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-				@if (!string.IsNullOrEmpty(TenantContext.TenantSlug))
+				@if (!string.IsNullOrEmpty(TenantContext.TenantKey))
 				{
 					<div class="text-center mb-4">
 						<img 
-							 @* src="/api/auth/brand-img/@TenantContext.TenantSlug" *@
-							 src="/images/@(TenantContext.TenantSlug).png"
+								 src="/api/brand-img/@TenantContext.TenantKey"
+								 @* src="/images/@(TenantContext.TenantKey).png" *@
 							 alt="Brand Logo"
 							 width="300" XXXheight="100"
 							 style="object-fit:contain;"

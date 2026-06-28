@@ -12,7 +12,7 @@ namespace Dyvenix.Auth.Shared.Contracts.v1;
 public interface ITenantService
 {
 	Task<TenantDto?> GetById(Guid id);
-	Task<TenantDto?> GetBySlug(string slug);
+	Task<TenantDto?> GetByKey(string key);
 	Task<IReadOnlyList<TenantDto>> GetAll();
 	Task<Guid> Create(CreateTenantReq request);
 	Task Update(UpdateTenantReq request);

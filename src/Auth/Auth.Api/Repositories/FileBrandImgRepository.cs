@@ -8,18 +8,18 @@ public class FileBrandImgRepository(IOptions<BrandImgOptions> options) : IBrandI
 {
 	private readonly string _basePath = options.Value.File.BasePath;
 
-	public async Task SaveAsync(string tenantSlug, Stream imageStream, CancellationToken ct = default)
+	public async Task SaveAsync(string tenantKey, Stream imageStream, CancellationToken ct = default)
 	{
 		Directory.CreateDirectory(_basePath);
-		var filePath = GetFilePath(tenantSlug);
+		var filePath = GetFilePath(tenantKey);
 
 		await using var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write);
 		await imageStream.CopyToAsync(fileStream, ct);
 	}
 
-	public Task<Stream?> GetAsync(string tenantSlug, CancellationToken ct = default)
+	public Task<Stream?> GetAsync(string tenantKey, CancellationToken ct = default)
 	{
-		var filePath = GetFilePath(tenantSlug);
+		var filePath = GetFilePath(tenantKey);
 
 		if (!File.Exists(filePath))
 			return Task.FromResult<Stream?>(null);
@@ -28,9 +28,9 @@ public class FileBrandImgRepository(IOptions<BrandImgOptions> options) : IBrandI
 		return Task.FromResult<Stream?>(stream);
 	}
 
-	public Task DeleteAsync(string tenantSlug, CancellationToken ct = default)
+	public Task DeleteAsync(string tenantKey, CancellationToken ct = default)
 	{
-		var filePath = GetFilePath(tenantSlug);
+		var filePath = GetFilePath(tenantKey);
 
 		if (File.Exists(filePath))
 			File.Delete(filePath);
@@ -38,5 +38,5 @@ public class FileBrandImgRepository(IOptions<BrandImgOptions> options) : IBrandI
 		return Task.CompletedTask;
 	}
 
-	private string GetFilePath(string tenantSlug) => Path.Combine(_basePath, $"{tenantSlug}.png");
+	private string GetFilePath(string tenantKey) => Path.Combine(_basePath, $"{tenantKey}.png");
 }

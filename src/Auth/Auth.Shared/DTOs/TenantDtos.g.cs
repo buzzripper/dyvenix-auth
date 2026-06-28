@@ -4,7 +4,7 @@ namespace Dyvenix.Auth.Shared.DTOs;
 public record TenantDto(
     Guid Id,
     string Name,
-    string Slug,
+    string Key,
     AuthMode AuthMode,
     string? ExternalAuthority,
     string? ExternalClientId,

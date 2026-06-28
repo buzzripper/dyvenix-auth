@@ -16,9 +16,9 @@ public partial class TenantApiClient : ApiClientBase, ITenantService
 		return await GetAsync<TenantDto?>($"api/v1/tenant/GetById/{id}");
 	}
 
-	public async Task<TenantDto?> GetBySlug(string slug)
+	public async Task<TenantDto?> GetByKey(string key)
 	{
-		return await GetAsync<TenantDto?>($"api/v1/tenant/GetBySlug/{Uri.EscapeDataString(slug)}");
+		return await GetAsync<TenantDto?>($"api/v1/tenant/GetByKey/{Uri.EscapeDataString(key)}");
 	}
 
 	public async Task<IReadOnlyList<TenantDto>> GetAll()

@@ -5,7 +5,7 @@ namespace Dyvenix.Auth.Data;
 public interface ITenantContext
 {
 	Guid TenantId { get; }
-	string? TenantSlug { get; }
+	string? TenantKey { get; }
 	Tenant? Tenant { get; }
 
 	void Set(Tenant tenant);
@@ -13,9 +13,9 @@ public interface ITenantContext
 
 public class TenantContext : ITenantContext
 {
-	public Guid TenantId => Tenant?.Id ?? Guid.Empty;
-	public string? TenantSlug => Tenant?.Slug;
 	public Tenant? Tenant { get; private set; }
+	public Guid TenantId => Tenant?.Id ?? Guid.Empty;
+	public string? TenantKey => Tenant?.Key;
 
 	public void Set(Tenant tenant) => Tenant = tenant;
 }

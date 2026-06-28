@@ -17,17 +17,17 @@ public class AzureBlobBrandImgRepository : IBrandImgRepository
 		_containerClient = serviceClient.GetBlobContainerClient(config.ContainerName);
 	}
 
-	public async Task SaveAsync(string tenantSlug, Stream imageStream, CancellationToken ct = default)
+	public async Task SaveAsync(string tenantKey, Stream imageStream, CancellationToken ct = default)
 	{
 		await _containerClient.CreateIfNotExistsAsync(PublicAccessType.None, cancellationToken: ct);
 
-		var blobClient = _containerClient.GetBlobClient(GetBlobName(tenantSlug));
+		var blobClient = _containerClient.GetBlobClient(GetBlobName(tenantKey));
 		await blobClient.UploadAsync(imageStream, new BlobHttpHeaders { ContentType = "image/png" }, cancellationToken: ct);
 	}
 
-	public async Task<Stream?> GetAsync(string tenantSlug, CancellationToken ct = default)
+	public async Task<Stream?> GetAsync(string tenantKey, CancellationToken ct = default)
 	{
-		var blobClient = _containerClient.GetBlobClient(GetBlobName(tenantSlug));
+		var blobClient = _containerClient.GetBlobClient(GetBlobName(tenantKey));
 
 		if (!await blobClient.ExistsAsync(ct))
 			return null;
@@ -36,11 +36,11 @@ public class AzureBlobBrandImgRepository : IBrandImgRepository
 		return response.Value.Content;
 	}
 
-	public async Task DeleteAsync(string tenantSlug, CancellationToken ct = default)
+	public async Task DeleteAsync(string tenantKey, CancellationToken ct = default)
 	{
-		var blobClient = _containerClient.GetBlobClient(GetBlobName(tenantSlug));
+		var blobClient = _containerClient.GetBlobClient(GetBlobName(tenantKey));
 		await blobClient.DeleteIfExistsAsync(cancellationToken: ct);
 	}
 
-	private static string GetBlobName(string tenantSlug) => $"{tenantSlug}.png";
+	private static string GetBlobName(string tenantKey) => $"{tenantKey}.png";
 }

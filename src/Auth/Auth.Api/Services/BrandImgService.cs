@@ -7,9 +7,9 @@ namespace Dyvenix.Auth.Api.Services;
 
 public class BrandImgService(IBrandImgRepository repository, ILogger<BrandImgService> logger)
 {
-	public async Task SaveAsync(string tenantSlug, Stream uploadStream, CancellationToken ct = default)
+	public async Task SaveAsync(string tenantKey, Stream uploadStream, CancellationToken ct = default)
 	{
-		ArgumentException.ThrowIfNullOrWhiteSpace(tenantSlug);
+		ArgumentException.ThrowIfNullOrWhiteSpace(tenantKey);
 
 		//using var image = await Image.LoadAsync(uploadStream, ct);
 
@@ -17,24 +17,24 @@ public class BrandImgService(IBrandImgRepository repository, ILogger<BrandImgSer
 		//await image.SaveAsync(pngStream, new PngEncoder(), ct);
 		//pngStream.Position = 0;
 
-		await repository.SaveAsync(tenantSlug, uploadStream, ct);
+		await repository.SaveAsync(tenantKey, uploadStream, ct);
 
-		logger.LogInformation("Brand image saved for tenant {TenantSlug}", tenantSlug);
+		logger.LogInformation("Brand image saved for tenant {TenantKey}", tenantKey);
 	}
 
-	public async Task<Stream?> GetAsync(string tenantSlug, CancellationToken ct = default)
+	public async Task<Stream?> GetAsync(string tenantKey, CancellationToken ct = default)
 	{
-		ArgumentException.ThrowIfNullOrWhiteSpace(tenantSlug);
+		ArgumentException.ThrowIfNullOrWhiteSpace(tenantKey);
 
-		return await repository.GetAsync(tenantSlug, ct);
+		return await repository.GetAsync(tenantKey, ct);
 	}
 
-	public async Task DeleteAsync(string tenantSlug, CancellationToken ct = default)
+	public async Task DeleteAsync(string tenantKey, CancellationToken ct = default)
 	{
-		ArgumentException.ThrowIfNullOrWhiteSpace(tenantSlug);
+		ArgumentException.ThrowIfNullOrWhiteSpace(tenantKey);
 
-		await repository.DeleteAsync(tenantSlug, ct);
+		await repository.DeleteAsync(tenantKey, ct);
 
-		logger.LogInformation("Brand image deleted for tenant {TenantSlug}", tenantSlug);
+		logger.LogInformation("Brand image deleted for tenant {TenantKey}", tenantKey);
 	}
 }
