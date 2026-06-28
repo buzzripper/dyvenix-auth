@@ -9,7 +9,7 @@ public partial class Tenant
 
 	// Properties
 	public string Name { get; set; } = null!;
-	public string Slug { get; set; } = null!;
+	public string Key { get; set; } = null!;
 	public AuthMode AuthMode { get; set; }
 	public string? ExternalAuthority { get; set; }
 	public string? ExternalClientId { get; set; }
@@ -27,7 +27,7 @@ public partial class Tenant
 	{
 		public const string Id = "Id";
 		public const string Name = "Name";
-		public const string Slug = "Slug";
+		public const string Key = "Key";
 		public const string AuthMode = "AuthMode";
 		public const string ExternalAuthority = "ExternalAuthority";
 		public const string ExternalClientId = "ExternalClientId";

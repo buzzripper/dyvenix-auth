@@ -19,8 +19,8 @@ public class ExternalLoginCallbackModel(
 	{
 		returnUrl ??= Url.Content("~/");
 
-		logger.LogInformation("ExternalLoginCallback invoked. Tenant: {Slug} ({TenantId}), returnUrl length: {Len}",
-			tenantContext.TenantSlug, tenantContext.TenantId, returnUrl?.Length);
+		logger.LogInformation("ExternalLoginCallback invoked. Tenant: {Key} ({TenantId}), returnUrl length: {Len}",
+			tenantContext.TenantKey, tenantContext.TenantId, returnUrl?.Length);
 
 		// Read the external identity set by the OIDC middleware (stored in Identity.External cookie).
 		var info = await signInManager.GetExternalLoginInfoAsync();
@@ -126,7 +126,7 @@ public class ExternalLoginCallbackModel(
 		// Sign in the new user with the application cookie.
 		await signInManager.SignInAsync(user, isPersistent: false);
 		logger.LogInformation("Created and signed in user {Email} for tenant {Tenant} via {Provider}.",
-			email, tenantContext.TenantSlug, info.LoginProvider);
+			email, tenantContext.TenantKey, info.LoginProvider);
 
 		return LocalRedirect(returnUrl);
 	}

@@ -41,18 +41,18 @@ namespace Dyvenix.Auth.Server
             {
                 var manager = provider.GetRequiredService<IOpenIddictApplicationManager>();
 
-                // Build redirect URIs dynamically from tenant slugs
-                var tenantSlugs = await context.Tenant
-                    .Select(t => t.Slug)
+                // Build redirect URIs dynamically from tenant keys
+                var tenantKeys = await context.Tenant
+                    .Select(t => t.Key)
                     .ToListAsync();
 
                 var redirectUris = new HashSet<Uri> { new("https://logixpro.local:5001/signin-oidc") };
                 var postLogoutUris = new HashSet<Uri> { new("https://logixpro.local:5001/signout-callback-oidc") };
 
-                foreach (var slug in tenantSlugs)
+                foreach (var key in tenantKeys)
                 {
-                    redirectUris.Add(new Uri($"https://{slug}.logixpro.local:5001/signin-oidc"));
-                    postLogoutUris.Add(new Uri($"https://{slug}.logixpro.local:5001/signout-callback-oidc"));
+                    redirectUris.Add(new Uri($"https://{key}.logixpro.local:5001/signin-oidc"));
+                    postLogoutUris.Add(new Uri($"https://{key}.logixpro.local:5001/signout-callback-oidc"));
                 }
 
                 // Portal BFF (confidential client, authorization code + refresh token)
@@ -190,7 +190,7 @@ namespace Dyvenix.Auth.Server
                     {
                         Id = acmeId,
                         Name = "Acme Corp",
-                        Slug = "acme",
+                        Key = "acme",
                         AuthMode = AuthMode.Local,
                         IsActive = true
                     });
@@ -202,7 +202,7 @@ namespace Dyvenix.Auth.Server
                     {
                         Id = contosoId,
                         Name = "Contoso",
-                        Slug = "contoso",
+                        Key = "contoso",
                         AuthMode = AuthMode.Local,
                         IsActive = true
                     });
@@ -217,7 +217,7 @@ namespace Dyvenix.Auth.Server
                     {
                         Id = fabrikamId,
                         Name = "Fabrikam (External)",
-                        Slug = "fabrikam",
+                        Key = "fabrikam",
                         AuthMode = AuthMode.ExternalOidc,
                         ExternalAuthority = "https://YOUR-IDP.example.com",
                         ExternalClientId = "YOUR_CLIENT_ID",
@@ -275,7 +275,7 @@ namespace Dyvenix.Auth.Server
 
                 foreach (var tenant in externalTenants)
                 {
-                    var schemeName = $"oidc-{tenant.Slug}";
+                    var schemeName = $"oidc-{tenant.Key}";
 
                     // Skip if already registered (e.g. from a previous run without restart)
                     if (await schemeProvider.GetSchemeAsync(schemeName) is not null)
@@ -289,7 +289,7 @@ namespace Dyvenix.Auth.Server
                         ClientId = tenant.ExternalClientId,
                         ClientSecret = tenant.ExternalClientSecret,
                         ResponseType = OpenIdConnectResponseType.Code,
-                        CallbackPath = $"/signin-oidc-{tenant.Slug}",
+                        CallbackPath = $"/signin-oidc-{tenant.Key}",
                         MapInboundClaims = false
                     };
 

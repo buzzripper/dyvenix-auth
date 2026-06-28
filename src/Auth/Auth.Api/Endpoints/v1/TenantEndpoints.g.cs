@@ -20,7 +20,7 @@ public static class TenantEndpoints
 			.Produces<TenantDto>(StatusCodes.Status200OK)
 			.Produces(StatusCodes.Status404NotFound);
 
-		group.MapGet("GetBySlug/{slug}", GetBySlug)
+		group.MapGet("GetByKey/{key}", GetByKey)
 			.Produces<TenantDto>(StatusCodes.Status200OK)
 			.Produces(StatusCodes.Status404NotFound);
 
@@ -47,9 +47,9 @@ public static class TenantEndpoints
 		return Result<TenantDto?>.Ok(dto);
 	}
 
-	public static async Task<Result<TenantDto?>> GetBySlug(ITenantService tenantService, string slug)
+	public static async Task<Result<TenantDto?>> GetByKey(ITenantService tenantService, string key)
 	{
-		var dto = await tenantService.GetBySlug(Uri.UnescapeDataString(slug));
+		var dto = await tenantService.GetByKey(Uri.UnescapeDataString(key));
 		return Result<TenantDto?>.Ok(dto);
 	}
 

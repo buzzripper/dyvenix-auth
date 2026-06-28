@@ -126,7 +126,7 @@ namespace Dyvenix.Auth.Server.Areas.Identity.Pages.Account
 
 				if (tenant.AuthMode == AuthMode.AD)
 				{
-					var httpClient = await _clientRouter.GetHttpClient(tenant.Slug);
+					var httpClient = await _clientRouter.GetHttpClient(tenant.Key);
 					var adApiClient = new AdApiClient(httpClient);
 					var adAuthResult = await adApiClient.AuthenticateUser(Input.Email, Input.Password);
 					if (adAuthResult.Status == AdAuthStatus.Success)

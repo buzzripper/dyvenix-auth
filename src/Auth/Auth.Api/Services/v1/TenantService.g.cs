@@ -29,14 +29,14 @@ public partial class TenantService : ITenantService
 			.SingleOrDefaultAsync();
 	}
 
-	public async Task<TenantDto?> GetBySlug(string slug)
+	public async Task<TenantDto?> GetByKey(string key)
 	{
-		if (string.IsNullOrWhiteSpace(slug))
+		if (string.IsNullOrWhiteSpace(key))
 			return null;
 
 		return await _db.Tenant
 			.AsNoTracking()
-			.Where(x => x.Slug == slug)
+			.Where(x => x.Key == key)
 			.Select(MapToDto())
 			.SingleOrDefaultAsync();
 	}
@@ -58,7 +58,7 @@ public partial class TenantService : ITenantService
 		{
 			Id = request.Id,
 			Name = request.Name,
-			Slug = request.Slug,
+			Key = request.Key,
 			AuthMode = request.AuthMode,
 			ExternalAuthority = request.ExternalAuthority,
 			ExternalClientId = request.ExternalClientId,
@@ -86,7 +86,7 @@ public partial class TenantService : ITenantService
 			.Where(x => x.Id == request.Id)
 			.ExecuteUpdateAsync(setters => setters
 				.SetProperty(x => x.Name, request.Name)
-				.SetProperty(x => x.Slug, request.Slug)
+				.SetProperty(x => x.Key, request.Key)
 				.SetProperty(x => x.AuthMode, request.AuthMode)
 				.SetProperty(x => x.ExternalAuthority, request.ExternalAuthority)
 				.SetProperty(x => x.ExternalClientId, request.ExternalClientId)
@@ -119,7 +119,7 @@ public partial class TenantService : ITenantService
 		return tenant => new TenantDto(
 			tenant.Id,
 			tenant.Name,
-			tenant.Slug,
+			tenant.Key,
 			tenant.AuthMode,
 			tenant.ExternalAuthority,
 			tenant.ExternalClientId,

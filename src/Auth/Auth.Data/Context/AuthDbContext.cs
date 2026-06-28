@@ -35,7 +35,7 @@ public partial class AuthDbContext : IdentityDbContext<ApplicationUser, Applicat
 			entity.ToTable("Tenant");
 			entity.HasKey(e => e.Id);
 			entity.Property(e => e.Name).IsRequired().HasMaxLength(200);
-			entity.Property(e => e.Slug).IsRequired().HasMaxLength(100);
+			entity.Property(e => e.Key).IsRequired().HasMaxLength(100);
 			entity.Property(e => e.AuthMode).IsRequired();
 			entity.Property(e => e.ExternalAuthority).HasMaxLength(500);
 			entity.Property(e => e.ExternalClientId).HasMaxLength(200);
