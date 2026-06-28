@@ -20,7 +20,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Auth\Auth.Api\Auth.Api.csproj" />
 	  <ProjectReference Include="..\AdAgent.Shared\AdAgent.Shared.csproj" />
 	</ItemGroup>
 

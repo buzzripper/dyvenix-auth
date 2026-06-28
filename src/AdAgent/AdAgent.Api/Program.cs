@@ -1,6 +1,5 @@
 using Dyvenix.AdAgent.Api.Config;
 using Dyvenix.AdAgent.Api.Endpoints.v1;
-using Dyvenix.Auth.Api.Extensions;
 using Dyvenix.Core.Api.Extensions.BuilderExtensions;
 using Dyvenix.Core.Api.Extensions.SvcCollExtensions;
 using Dyvenix.Core.Api.Extensions.WebAppExtensions;
@@ -30,7 +29,7 @@ if (builder.Environment.IsEnvironment("Testing"))
 else
 	services.AddJwtBearerAuthentication(builder.Configuration);
 
-services.AddAuthApiServices();
+//services.AddAuthApiServices();
 
 // Add AdAgent.API services
 var adAgentConfig = new ConfigRepository().GetConfig();
