@@ -40,7 +40,7 @@ public static partial class AuthApiServiceCollExt
 
 		// Register business logic services
 		services.AddScoped<ICurrentUserService, HttpContextCurrentUserService>();
-		services.AddScoped<BrandImgService>();
+		services.AddScoped<ITenantAssetService, TenantAssetService>();
 
 		services.AddExceptionHandler<ApiExceptionHandler>();
 
@@ -73,7 +73,7 @@ public static partial class AuthApiServiceCollExt
 				AuthenticationSchemes = "OpenIddict.Validation.AspNetCore"
 			});
 
-		apiGroup.MapBrandImgEndpoints();
+		apiGroup.MapTenantAssetEndpoints();
 		apiGroup.MapOidcAppEndpoints();
 
 		// Map API endpoints
@@ -106,18 +106,18 @@ public static partial class AuthApiServiceCollExt
 	}
 
 	/// <summary>
-	/// Registers the brand image repository based on configuration.
+	/// Registers the tenant asset repository based on configuration.
 	/// Call after AddAuthApiServices.
 	/// </summary>
-	public static IServiceCollection AddBrandImgRepository(this IServiceCollection services, IConfiguration configuration)
+	public static IServiceCollection AddTenantAssetRepository(this IServiceCollection services, IConfiguration configuration)
 	{
-		services.Configure<BrandImgOptions>(configuration.GetSection("BrandImg"));
+		services.Configure<TenantAssetOptions>(configuration.GetSection("TenantAssets"));
 
-		var provider = configuration.GetValue<string>("BrandImg:Provider") ?? "File";
+		var provider = configuration.GetValue<string>("TenantAssets:Provider") ?? "File";
 		if (provider.Equals("AzureBlob", StringComparison.OrdinalIgnoreCase))
-			services.AddScoped<IBrandImgRepository, AzureBlobBrandImgRepository>();
+			services.AddScoped<ITenantAssetRepository, AzureBlobTenantAssetRepository>();
 		else
-			services.AddScoped<IBrandImgRepository, FileBrandImgRepository>();
+			services.AddScoped<ITenantAssetRepository, FileTenantAssetRepository>();
 
 		return services;
 	}
