@@ -159,7 +159,7 @@ services.AddHostedService<Worker>();
 // Auth.Api services (system endpoints, health, documentation)
 services.AddPermissionAuthorization();
 services.AddAuthApiServices();
-services.AddBrandImgRepository(builder.Configuration);
+services.AddTenantAssetRepository(builder.Configuration);
 services.AddStandardApiVersioning();
 
 services.AddScoped<IClientRouter, ClientRouter>();
