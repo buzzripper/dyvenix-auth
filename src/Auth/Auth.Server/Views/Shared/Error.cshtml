@@ -1,14 +1,32 @@
 ﻿@model ErrorViewModel
-    
-<div class="jumbotron">
-    <h2>Ooooops, something went really bad! :(</h2>
-    <p class="lead text-left">
-        @if (!string.IsNullOrEmpty(Model.Error)) {
-            <strong>@Model.Error</strong>
-        }
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body class="min-vh-100">
+    <div class="d-flex align-items-center justify-content-center min-vh-100">
+        <div class="col-md-6">
+            <div class="card p-4">
+                <h2>Ooooops, something went really bad! :(</h2>
+                <p class="lead">
+                    @if (!string.IsNullOrEmpty(Model.Error)) {
+                        <strong>@Model.Error</strong>
+                    }
 
-        @if (!string.IsNullOrEmpty(Model.ErrorDescription)) {
-            <small>@Model.ErrorDescription</small>
-        }
-    </p>
-</div>
+                    @if (!string.IsNullOrEmpty(Model.ErrorDescription)) {
+                        <small>@Model.ErrorDescription</small>
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

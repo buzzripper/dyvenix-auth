@@ -1,17 +1,37 @@
 ﻿@using Microsoft.Extensions.Primitives
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log out</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body class="min-vh-100">
+    <div class="d-flex align-items-center justify-content-center min-vh-100">
+        <div class="col-md-6">
+            <div class="card p-4">
+                <h1>Log out</h1>
+                <p class="lead">Are you sure you want to sign out?</p>
 
-<div class="jumbotron">
-    <h1>Log out</h1>
-    <p class="lead text-left">Are you sure you want to sign out?</p>
+                <form asp-controller="Authorization" asp-action="Logout" method="post">
+                    @* Flow the request parameters so they can be received by the LogoutPost action: *@
+                    @foreach (var parameter in Context.Request.HasFormContentType ?
+                       (IEnumerable<KeyValuePair<string, StringValues>>) Context.Request.Form : Context.Request.Query)
+                    {
+                        <input type="hidden" name="@parameter.Key" value="@parameter.Value" />
+                    }
 
-    <form asp-controller="Authorization" asp-action="Logout" method="post">
-        @* Flow the request parameters so they can be received by the LogoutPost action: *@
-        @foreach (var parameter in Context.Request.HasFormContentType ?
-           (IEnumerable<KeyValuePair<string, StringValues>>) Context.Request.Form : Context.Request.Query)
-        {
-            <input type="hidden" name="@parameter.Key" value="@parameter.Value" />
-        }
-
-        <input class="btn btn-lg btn-success" name="Confirm" type="submit" value="Yes" />
-    </form>
-</div>
+                    <input class="btn btn-lg btn-success" name="Confirm" type="submit" value="Yes" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
